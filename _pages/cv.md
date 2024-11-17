@@ -9,56 +9,45 @@ redirect_from:
 
 {% include base_path %}
 
+My detailed, up-to-date CV can be found [here](https://drive.google.com/file/d/1ZzrYyyTns0v2jnggg8Az6NSFse4wxqGm/view?usp=drive_link).
+
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* MSc in Statistics and Machine Learning (Distinction), University of Oxford, 2017 - 2018
+  * Thesis: Evaluation of an Implicit Generative Model for Multi-graphs
+  * Advisors: Yee Whye Teh, Benjamin Bloem-Reddy
 
-Work experience
+* BSc in Mathematics (First Class Honors), Imperial College London, 2014 - 2017
+  * Graduated in top 5%; Dean's List (2017)
+  * Awarded the Imperial Undergraduate Research Opportunities Program (UROP) Scholarship
+
+Employment & Professional Roles
 ======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Senior Research Data Scientist (Global Research), Bank of America Securities, 2021 - Present
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Research Data Scientist (Global Research), RBC Capital Markets, 2019 - 2021
 
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Deep Learning Researcher, VUNO, 2017 - 2018
+
+Past Research
+======
+* Research Assistant, Machine Learning Department, Carnegie Mellon University, 2024 - Present
+  * Supervised by Prof. Pradeep Ravikumar
+
+* Research Assistant, Department of Statistics, Columbia University, 2024 - Present
+  * Supervised by Prof. Yongchan Kwon
+
+* Student Researcher, Department of Statistics, University of Oxford, 2018
+  * Supervised by Prof. Yee Whye Teh and Prof. Benjamin Bloem-Reddy
+
+* Bioinformatics Research Assistant, Department of Applied Mathematics, Imperial College London, 2016
+  * Supervised by Prof. Mauricio Barahona
+
+* Data Science Research Assistant, Department of Biomedical Informatics, Ajou University School of Medicine, 2015
+  * Supervised by Prof. Rae Woong Park
   
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
-
 Publications
 ======
   <ul>{% for post in site.publications reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
