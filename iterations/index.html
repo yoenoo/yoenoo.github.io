@@ -40,12 +40,12 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 3em 2em;
+            padding-top: 6.5em; /* Add space for fixed navbar */
         }
 
         /* Header */
         .header {
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 2em;
+            padding-bottom: 0em;
             margin-bottom: 3em;
         }
 
@@ -77,33 +77,72 @@
 
         /* Navigation */
         .nav {
-            margin: 2em 0 3em 0;
-            border-bottom: 1px solid #e5e5e5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(253, 253, 253, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+        }
+
+        .nav-name {
+            font-size: 0.95em;
+            color: #2c2c2c;
+            font-weight: normal;
+            letter-spacing: 0.01em;
         }
 
         .nav-tabs {
             display: flex;
-            gap: 0;
-            margin-bottom: 0;
+            gap: 2.5em;
+            margin: 0;
         }
 
-        .nav a {
-            color: #666;
-            font-size: 0.95em;
-            text-transform: lowercase;
-            padding: 0.8em 1.5em;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
+        .nav a.nav-link {
+            position: relative;
+            color: #888;
+            font-size: 0.9em;
+            padding: 0;
+            transition: color 0.3s ease;
+            font-weight: normal;
         }
 
-        .nav a:hover {
-            color: #2563eb;
+        .nav a.nav-link:hover {
+            color: #2c2c2c;
             text-decoration: none;
         }
 
-        .nav a.active {
-            color: #2563eb;
-            border-bottom-color: #2563eb;
+        .nav a.nav-link.active {
+            color: #2c2c2c;
+        }
+
+        /* Subtle underline animation */
+        .nav a.nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #2c2c2c;
+            transition: width 0.3s ease;
+        }
+
+        .nav a.nav-link:hover::after,
+        .nav a.nav-link.active::after {
+            width: 100%;
         }
 
         /* Sections */
@@ -213,6 +252,7 @@
         @media (max-width: 768px) {
             .container {
                 padding: 2em 1.5em;
+                padding-top: 5.5em; /* Adjust for smaller navbar on mobile */
             }
 
             .name {
@@ -225,10 +265,21 @@
                 margin-right: 0;
             }
 
-            .nav a {
-                display: inline-block;
-                margin-right: 0;
-                padding: 0.6em 1em;
+            .nav-container {
+                padding: 0 1.5em;
+                height: 48px;
+            }
+
+            .nav-name {
+                font-size: 0.9em;
+            }
+
+            .nav-tabs {
+                gap: 1.5em;
+            }
+
+            .nav a.nav-link {
+                font-size: 0.85em;
             }
 
             .news-item {
@@ -274,6 +325,55 @@
             outline-offset: 2px;
         }
 
+        /* Scroll animations */
+        .section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger animation for child elements */
+        .section.visible .project,
+        .section.visible .news-item,
+        .section.visible p {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .section.visible .project:nth-child(1) { animation-delay: 0.1s; }
+        .section.visible .project:nth-child(2) { animation-delay: 0.2s; }
+        .section.visible .project:nth-child(3) { animation-delay: 0.3s; }
+        .section.visible .project:nth-child(4) { animation-delay: 0.4s; }
+
+        .section.visible .news-item:nth-child(1) { animation-delay: 0.1s; }
+        .section.visible .news-item:nth-child(2) { animation-delay: 0.15s; }
+        .section.visible .news-item:nth-child(3) { animation-delay: 0.2s; }
+        .section.visible .news-item:nth-child(4) { animation-delay: 0.25s; }
+        .section.visible .news-item:nth-child(5) { animation-delay: 0.3s; }
+        .section.visible .news-item:nth-child(6) { animation-delay: 0.35s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Initial state for animated elements */
+        .project,
+        .news-item,
+        #misc p {
+            opacity: 0;
+        }
+
         /* Print styles */
         @media print {
             body { font-size: 12pt; }
@@ -283,32 +383,37 @@
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-name">Eyon Jang</div>
+            <div class="nav-tabs">
+                <a href="#intro" class="nav-link active">About</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#news" class="nav-link">News</a>
+                <a href="#misc" class="nav-link">Misc</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1 class="name">Your Name</h1>
+            <h1 class="name">Eyon Jang</h1>
             <div class="title-line">AI Safety Researcher, [Your Institution]</div>
             <div class="contact-line">
-                <a href="mailto:your.email@domain.com">email</a>
-                <a href="https://scholar.google.com/citations?user=yourprofile">scholar</a>
-                <a href="https://twitter.com/yourusername">twitter</a>
-                <a href="/cv.pdf">cv</a>
+                <a href="mailto:yjang385@gmail.com">Email</a>
+                <a href="https://linkedin.com/in/yeonwoojang">LinkedIn</a>
+                <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ&sortby=pubdate">Scholar</a>
+                <a href="https://x.com/yoenoo_">X</a>
+                <a href="/cv.pdf">CV</a>
             </div>
         </header>
 
-        <!-- Navigation -->
-        <nav class="nav">
-            <div class="nav-tabs">
-                <a href="#intro" class="nav-link active">intro</a>
-                <a href="#research" class="nav-link">research</a>
-                <a href="#news" class="nav-link">news</a>
-                <a href="#contact" class="nav-link">contact</a>
-            </div>
-        </nav>
-
         <!-- Introduction -->
-        <section id="intro" class="section">
-            <h2 class="section-title">Introduction</h2>
+        <section id="intro" class="section visible">
+            <h2 class="section-title">About</h2>
             <div class="intro-text">
                 <p>
                     I work on ensuring that artificial intelligence systems remain beneficial and aligned 
@@ -474,6 +579,48 @@
             </div>
         </section>
 
+        <!-- Misc -->
+        <section id="misc" class="section">
+            <h2 class="section-title">Miscellaneous</h2>
+            
+            <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Mentoring</h3>
+            <p style="margin-bottom: 1.5em;">
+                I enjoy mentoring students interested in AI safety research. I currently supervise 3 PhD students 
+                and regularly mentor undergraduate researchers through the AI Safety Scholars program. 
+                If you're interested in working together, please reach out with your background and research interests.
+            </p>
+            
+            <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Teaching</h3>
+            <p style="margin-bottom: 1.5em;">
+                <strong>CS 401: Advanced Topics in AI Safety</strong> (Spring 2025)<br>
+                <span style="color: #666; font-size: 0.95em;">Graduate seminar covering alignment, interpretability, and robustness</span><br><br>
+                
+                <strong>CS 201: Introduction to Machine Learning</strong> (Fall 2024)<br>
+                <span style="color: #666; font-size: 0.95em;">Undergraduate course with special emphasis on responsible AI development</span>
+            </p>
+            
+            <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Service</h3>
+            <p style="margin-bottom: 1.5em;">
+                <strong>Program Committee:</strong> NeurIPS 2025, ICML 2025, AAAI 2025, AI Safety Workshop 2024<br>
+                <strong>Reviewer:</strong> Nature Machine Intelligence, Journal of AI Research<br>
+                <strong>Organizer:</strong> Monthly AI Safety Reading Group, Annual Safety Research Symposium
+            </p>
+            
+            <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Selected Talks</h3>
+            <p style="margin-bottom: 1.5em;">
+                "The Alignment Problem: Technical Challenges and Solutions" — <em>MIT AI Colloquium, Oct 2024</em><br>
+                "Mechanistic Interpretability at Scale" — <em>DeepMind Research Seminar, Sep 2024</em><br>
+                "Building Robust AI Evaluations" — <em>Stanford EA Conference, May 2024</em>
+            </p>
+            
+            <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Other Interests</h3>
+            <p>
+                Outside of research, I enjoy hiking, playing chess (1800 ELO on chess.com), 
+                and contributing to open-source AI safety tools. I'm also involved in effective altruism 
+                and regularly participate in AI governance discussions.
+            </p>
+        </section>
+
         <!-- Contact -->
         <section id="contact" class="section">
             <h2 class="section-title">Contact</h2>
@@ -511,6 +658,25 @@
                     }
                 }
             });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            sectionObserver.observe(section);
         });
 
         // Update active tab on scroll
