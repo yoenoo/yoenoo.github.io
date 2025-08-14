@@ -72,7 +72,8 @@
         }
 
         .contact-line a:hover {
-            color: #2563eb;
+            color: #666;
+            text-decoration: none;
         }
 
         .contact-line svg {
@@ -84,7 +85,7 @@
         }
 
         .contact-line a:hover svg {
-            fill: #2563eb;
+            fill: #666;
         }
 
         /* Navigation */
@@ -160,6 +161,7 @@
         /* Sections */
         .section {
             margin-bottom: 3em;
+            scroll-margin-top: 70px; /* Offset for fixed navbar */
         }
 
         .section-title {
@@ -322,9 +324,10 @@
 
         /* Status indicators */
         .status {
-            font-size: 0.85em;
+            font-size: 0.9em;
             color: #666;
             font-variant: small-caps;
+            vertical-align: top;
         }
 
         .status.published { color: #0f5132; }
@@ -403,8 +406,9 @@
                 <a href="#intro" class="nav-link active">About</a>
                 <a href="#research" class="nav-link">Research</a>
                 <a href="#news" class="nav-link">News</a>
+                <a href="#projects" class="nav-link">Projects</a>
                 <a href="#misc" class="nav-link">Misc</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <!-- <a href="#contact" class="nav-link">Contact</a> -->
             </div>
         </div>
     </nav>
@@ -413,12 +417,36 @@
         <!-- Header -->
         <header class="header">
             <h1 class="name">Eyon Jang</h1>
-            <div class="title-line">AI Safety Researcher, [Your Institution]</div>
+            <div class="title-line">A(G)I Safety Researcher</div>
             <div class="contact-line">
-                <a href="mailto:yjang385@gmail.com">Email</a>
-                <a href="https://linkedin.com/in/yeonwoojang">LinkedIn</a>
-                <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ&sortby=pubdate">Scholar</a>
-                <a href="https://x.com/yoenoo_">X</a>
+                <a href="mailto:yjang385@gmail.com" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/yeonwoojang" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/yoenoo" title="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ&sortby=pubdate" title="Google Scholar">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/yoenoo_" title="X (Twitter)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://lesswrong.com/users/eyon-jang" title="LessWrong">
+                    LessWrong
+                </a>
                 <a href="/cv.pdf">CV</a>
             </div>
         </header>
@@ -428,20 +456,25 @@
             <h2 class="section-title">About</h2>
             <div class="intro-text">
                 <p>
-                    I work on ensuring that artificial intelligence systems remain beneficial and aligned 
+                    I work on ensuring that AIs remain beneficial and aligned 
                     with human values as they become more capable. My research focuses on developing 
-                    methods for understanding, evaluating, and controlling advanced AI systems.
+                    methods for understanding, evaluating, and controlling advanced AI systems,
+                    with a particular focus on <a href="https://www.lesswrong.com/posts/FqpAPC48CzAtvfx5C/automating-ai-safety-what-we-can-do-today">AI R&D automation</a> and scalable alignment techniques using high-compute RL.
                 </p>
                 <p>
-                    Currently, I am investigating techniques for mechanistic interpretability of large 
-                    language models, robust evaluation methods for AI safety, and scalable approaches 
-                    to AI alignment. I am particularly interested in the challenge of maintaining 
-                    alignment as AI systems become more capable than their human overseers.
+                    I am currently a <a href="https://www.matsprogram.org/">MATS</a> 8.0 scholar 
+                    researching <a href="https://www.lesswrong.com/posts/Dft9vpMnEeWFE3Gc6/exploration-hacking-can-reasoning-models-subvert-rl-1">exploration hacking</a>,
+                    mentored by Scott Emmons, David Lindner, Roland Zimmerman, 
+                    and Stephen McAleer.
+                </p>
+                <p>
+                    Previously, I spent 6 years as a quantitative researcher and investment analyst on Wall Street. 
+                    I received my MSc in Statistics and Machine Learning (with Distinction) from the University 
+                    of Oxford, where I was supervised by <a href="https://www.stats.ox.ac.uk/~teh/">Prof. Yee Whye Teh</a> and <a href="https://www.stat.ubc.ca/~benbr/">Prof. Benjamin Bloem-Reddy</a>.
                 </p>
             </div>
             <div class="interests">
-                Research interests: AI alignment, mechanistic interpretability, robustness evaluation, 
-                mesa-optimization, value learning, AI governance
+                Research interests: AI alignment, Scalable Oversight, Interpretability, Reinforcement Learning 
             </div>
         </section>
 
@@ -450,62 +483,63 @@
             <h2 class="section-title">Research</h2>
             
             <div class="project">
-                <h3 class="project-title">Constitutional AI: Harmlessness from AI Feedback</h3>
-                <div class="project-meta">
-                    <span class="status published">published</span> · 
-                    NeurIPS 2024 · 
-                    with Research Partner, Senior Collaborator
-                </div>
-                <div class="project-description">
-                    We present a method for training AI systems to be harmless through constitutional learning, 
-                    where models learn to critique and revise their outputs according to a set of principles. 
-                    Our approach shows significant reductions in harmful outputs while maintaining helpfulness.
-                </div>
-                <div class="project-links">
-                    <a href="#">paper</a>
-                    <a href="#">code</a>
-                    <a href="#">blog</a>
-                </div>
-            </div>
-
-            <div class="project">
-                <h3 class="project-title">Mechanistic Analysis of Mesa-Optimization in Language Models</h3>
+                <h3 class="project-title">Model Organisms of Exploration Hacking</h3>
                 <div class="project-meta">
                     <span class="status ongoing">ongoing</span> · 
-                    2024–2025 · 
-                    with Interpretability Team
+                    MATS 8.0 · 
+                    <b>Eyon Jang</b>, Damon Falck, Joschka Braun
                 </div>
                 <div class="project-description">
-                    Investigation of whether large language models develop internal optimization processes 
-                    that could pursue goals different from the training objective. We use interpretability 
-                    techniques to identify and analyze optimization-like structures in trained models.
+                    <i>Can reasoning models undermine RL training by manipulating their exploration?</i> Through model organisms experiments in realistic settings, we are developing a science of when and how models can influence their own RL training (“exploration hacking”), and build an understanding of what causes current frontier models to do so in the wild.
                 </div>
                 <div class="project-links">
-                    <a href="#">draft</a>
-                    <a href="#">demo</a>
+                    <a href="https://drive.google.com/file/d/12P83kSQ-tXHFwJV8HOhkElQOERnkeNbR/view?usp=sharing">research proposal</a>
+                    <a href="https://www.lesswrong.com/posts/Dft9vpMnEeWFE3Gc6/exploration-hacking-can-reasoning-models-subvert-rl-1">blog (interim update)</a>
                 </div>
             </div>
 
             <div class="project">
-                <h3 class="project-title">Adversarial Robustness of AI Safety Evaluations</h3>
+                <h3 class="project-title">Prompt Attacks Reveal Superficial Knowledge Removal in Unlearning Methods</h3>
                 <div class="project-meta">
                     <span class="status published">published</span> · 
-                    AAAI 2024 · 
-                    with Safety Evaluation Team
+                    COLM 2025 SoLaR workshop · 
+                    <b>Eyon Jang</b>, Shariqah Hossain, Ashwin Sreevatsa, Diogo Cruz 
                 </div>
                 <div class="project-description">
-                    Systematic testing of AI safety evaluation methods against optimization pressure and 
-                    deception. We identify critical vulnerabilities in current approaches that could lead 
-                    to dangerous overconfidence in system safety assessments.
+                    We investigate whether machine unlearning methods genuinely remove knowledge 
+                    or merely suppress it, revealing that some approaches remain vulnerable to 
+                    simple prompt attacks. Our work highlights the need for more reliable unlearning 
+                    evaluations and provides an open framework for systematic evaluation of unlearning methods.
                 </div>
                 <div class="project-links">
-                    <a href="#">paper</a>
-                    <a href="#">evaluation suite</a>
-                    <a href="#">policy brief</a>
+                    <a href="https://arxiv.org/abs/2506.10236">paper</a>
+                    <a href="https://github.com/diogo-cruz/prompt_attacks_paper">github</a>
                 </div>
             </div>
 
             <div class="project">
+                <h3 class="project-title">Automating AI Safety Research using AIs</h3>
+                <div class="project-meta">
+                    <span class="status published">published</span> · 
+                    LessWrong · 
+                    Matthew Shinkle, <b>Eyon Jang</b>, Jacques Thibodeau
+                </div>
+                <div class="project-description">
+                    As AIs become more capable, automating AI R&D is emerging as a 
+                    promising approach to accelerate progress in model interpretability 
+                    and, more broadly, AI safety.
+                    This project introduces a unified pipeline of AI agent tools for automating interpretability research,
+                    spanning literature search and parsing, codebase discovery and preparation, designing and executing experiments.
+                    The utility of these tools is demonstrated in a sandbox environment for sparse autoencoders (SAEs), 
+                    enabling the autonomous implementation and evaluation of diverse <a href="https://arxiv.org/abs/2503.09532">SAEBench</a> experiments.
+                </div>
+                <div class="project-links">
+                    <a href="https://www.lesswrong.com/posts/FqpAPC48CzAtvfx5C/automating-ai-safety-what-we-can-do-today">lesswrong</a>
+                    <a href="https://github.com/MShinkle/automation_projects_pilots/tree/main">github</a>
+                </div>
+            </div>
+
+            <!-- <div class="project">
                 <h3 class="project-title">Scalable Oversight for Superhuman AI Systems</h3>
                 <div class="project-meta">
                     <span class="status submitted">under review</span> · 
@@ -521,7 +555,7 @@
                     <a href="#">preprint</a>
                     <a href="#">appendix</a>
                 </div>
-            </div>
+            </div> -->
         </section>
 
         <!-- News -->
@@ -531,19 +565,30 @@
             <div class="news-item">
                 <div class="news-date">Aug 2025</div>
                 <div class="news-content">
-                    <div class="news-title">Keynote at AI Safety Summit</div>
+                    <div class="news-title">Accepted to MATS 8.1 (Extension)</div>
                     <div class="news-description">
-                        Presenting our robustness evaluation work at the International AI Safety Summit in London.
+                        I'll continue my MATS research on exploration hacking! <br>
+                        Project selected as a spotlight talk at the MATS Symposium.
                     </div>
                 </div>
             </div>
-
+            
+            <div class="news-item">
+                <div class="news-date">Aug 2025</div>
+                <div class="news-content">
+                    <div class="news-title">SPAR Fall 2025 Mentor</div>
+                    <div class="news-description">
+                        I'll be co-mentoring 4 SPAR projects with Diogo Cruz.
+                    </div>
+                </div>
+            </div>
+            
             <div class="news-item">
                 <div class="news-date">Jul 2025</div>
                 <div class="news-content">
-                    <div class="news-title">Grant from Future of Humanity Institute</div>
+                    <div class="news-title">Paper accepted to COLM 2025</div>
                     <div class="news-description">
-                        Received £500K grant to study mesa-optimization in large language models over three years.
+                        "Prompt Attacks Reveal Superficial Knowledge Removal in Unlearning Methods" accepted to COLM 2025 SoLaR workshop.
                     </div>
                 </div>
             </div>
@@ -551,74 +596,122 @@
             <div class="news-item">
                 <div class="news-date">Jun 2025</div>
                 <div class="news-content">
-                    <div class="news-title">Paper accepted to NeurIPS 2025</div>
+                    <div class="news-title">Accepted to MATS 8.0</div>
                     <div class="news-description">
-                        "Scalable Oversight for Superhuman AI Systems" accepted to NeurIPS 2025.
+                        I'll be joining MATS 8.0 as a research scholar to study AI safety!
                     </div>
                 </div>
             </div>
 
-            <div class="news-item">
-                <div class="news-date">May 2025</div>
-                <div class="news-content">
-                    <div class="news-title">Editorial board appointment</div>
-                    <div class="news-description">
-                        Joined the editorial board of the <em>Journal of AI Safety Research</em> as Associate Editor.
-                    </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="section">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="project">
+                <h3 class="project-title">Model Organisms of Exploration Hacking</h3>
+                <div class="project-meta">
+                    <!-- <span class="status completed">completed</span> ·  -->
+                    Anthropic x MATS Hackathon · 
+                    <b>Eyon Jang</b>, Damon Falck, Joschka Braun
+                </div>
+                <div class="project-description">
+                    We did a 2-day sprint to investigate the capability and propensity of Claude models to engage in exploration hacking.
+                </div>
+                <div class="project-links">
+                    <a href="https://docs.google.com/presentation/d/1yIt2s-qZfPSPettcFRw-RV8SZhGx6OxKd-ACcTgM3-c/edit?usp=sharing">presentation</a>
                 </div>
             </div>
 
-            <div class="news-item">
-                <div class="news-date">Apr 2025</div>
-                <div class="news-content">
-                    <div class="news-title">Guest lecture at Stanford</div>
-                    <div class="news-description">
-                        Gave lecture on "Constitutional AI and Value Alignment" for CS229. 
-                        <a href="#">Slides available here</a>.
-                    </div>
+            <div class="project">
+                <h3 class="project-title">Transformers from scratch</h3>
+                <div class="project-meta">
+                    <!-- <span class="status completed">completed</span> ·  -->
+                    Open Source
+                </div>
+                <div class="project-description">
+                    Implementation of various Transformer architectures from scratch in PyTorch.
+                </div>
+                <div class="project-links">
+                    <a href="#">github</a>
                 </div>
             </div>
 
-            <div class="news-item">
-                <div class="news-date">Mar 2025</div>
-                <div class="news-content">
-                    <div class="news-title">Commentary in <em>Nature AI</em></div>
-                    <div class="news-description">
-                        Co-authored commentary on robust evaluation methods for AI safety. 
-                        <a href="#">Read here</a>.
-                    </div>
+            <div class="project">
+                <h3 class="project-title">Turing</h3>
+                <div class="project-meta">
+                    <!-- <span class="status completed">completed</span> ·  -->
+                    Open Source
+                </div>
+                <div class="project-description">
+                    Lightweight PyTorch-like autograd library and neural network framework implemented entirely in NumPy.
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/yoenoo/turing">github</a>
                 </div>
             </div>
+
+
         </section>
 
         <!-- Misc -->
         <section id="misc" class="section">
             <h2 class="section-title">Miscellaneous</h2>
             
-            <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Mentoring</h3>
-            <p style="margin-bottom: 1.5em;">
-                I enjoy mentoring students interested in AI safety research. I currently supervise 3 PhD students 
-                and regularly mentor undergraduate researchers through the AI Safety Scholars program. 
-                If you're interested in working together, please reach out with your background and research interests.
-            </p>
+            <div class="misc-subsection">
+                <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Mentoring</h3>
+                <p style="margin-bottom: 1.5em;">
+                    I find it deeply fulfilling to help talented researchers enter the AI safety field. I'll be mentoring 4 SPAR projects this fall!
+                </p>
+                <p style="margin-bottom: 0.5em;"><strong>Current Projects:</strong></p>
+                <div class="mentor-projects">
+                    <a href="https://airtable.com/appypGt9DhCljq3Gh/shrpaJMUhvElTxcI8?detail=eyJwYWdlSWQiOiJwYWd5SURLVXg5WHk4bHlmMCIsInJvd0lkIjoicmVjOHA3ZFFXd2doMlBvcnAiLCJzaG93Q29tbWVudHMiOmZhbHNlLCJxdWVyeU9yaWdpbkhpbnQiOnsidHlwZSI6InBhZ2VFbGVtZW50IiwiZWxlbWVudElkIjoicGVsSmM5QmgwWDIxMEpmUVEiLCJxdWVyeUNvbnRhaW5lcklkIjoicGVsUlNqc0xIbWhUVmJOaE4iLCJzYXZlZEZpbHRlclNldElkIjoic2ZzRGNnMUU3Mk9xSXVhYlgifX0">Goal Drift Quantification in Long-Horizon Tasks</a><br>
+                    <a href="https://airtable.com/appypGt9DhCljq3Gh/shrpaJMUhvElTxcI8?detail=eyJwYWdlSWQiOiJwYWd5SURLVXg5WHk4bHlmMCIsInJvd0lkIjoicmVjaEhpdGthZkl3NkpCa0giLCJzaG93Q29tbWVudHMiOmZhbHNlLCJxdWVyeU9yaWdpbkhpbnQiOnsidHlwZSI6InBhZ2VFbGVtZW50IiwiZWxlbWVudElkIjoicGVsSmM5QmgwWDIxMEpmUVEiLCJxdWVyeUNvbnRhaW5lcklkIjoicGVsUlNqc0xIbWhUVmJOaE4iLCJzYXZlZEZpbHRlclNldElkIjoic2ZzRGNnMUU3Mk9xSXVhYlgifX0">Emergent Misalignment from Persona Fine-tuning</a><br>
+                    <a href="https://airtable.com/appypGt9DhCljq3Gh/shrpaJMUhvElTxcI8?detail=eyJwYWdlSWQiOiJwYWd5SURLVXg5WHk4bHlmMCIsInJvd0lkIjoicmVjbWR0bTJNaVFxTkVhcUoiLCJzaG93Q29tbWVudHMiOmZhbHNlLCJxdWVyeU9yaWdpbkhpbnQiOnsidHlwZSI6InBhZ2VFbGVtZW50IiwiZWxlbWVudElkIjoicGVsSmM5QmgwWDIxMEpmUVEiLCJxdWVyeUNvbnRhaW5lcklkIjoicGVsUlNqc0xIbWhUVmJOaE4iLCJzYXZlZEZpbHRlclNldElkIjoic2ZzRGNnMUU3Mk9xSXVhYlgifX0">Agent Misalignment from Unreliable Tool Behavior</a><br>
+                    <a href="https://airtable.com/appypGt9DhCljq3Gh/shrpaJMUhvElTxcI8?detail=eyJwYWdlSWQiOiJwYWd5SURLVXg5WHk4bHlmMCIsInJvd0lkIjoicmVjcmdyNmZMV2FKZFNGakkiLCJzaG93Q29tbWVudHMiOmZhbHNlLCJxdWVyeU9yaWdpbkhpbnQiOnsidHlwZSI6InBhZ2VFbGVtZW50IiwiZWxlbWVudElkIjoicGVsSmM5QmgwWDIxMEpmUVEiLCJxdWVyeUNvbnRhaW5lcklkIjoicGVsUlNqc0xIbWhUVmJOaE4iLCJzYXZlZEZpbHRlclNldElkIjoic2ZzRGNnMUU3Mk9xSXVhYlgifX0">Assessing Model Task Preferences</a>
+                </div>
+                <p style="margin-top: 1em;">
+                    I plan to mentor more projects through other AI safety programs. If you're interested in working together, please reach out with your background and research interests.
+                </p>
+            </div>
             
-            <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Teaching</h3>
+            <!-- <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Mentoring</h3>
+            <p style="margin-bottom: 1.5em;">
+                I enjoy mentoring students interested in AI safety research. I'll be mentoring 4 SPAR projects this fall!
+                Projects:
+                <br>
+                <a href="https://airtable.com/appypGt9DhCljq3Gh/shrpaJMUhvElTxcI8?detail=eyJwYWdlSWQiOiJwYWd5SURLVXg5WHk4bHlmMCIsInJvd0lkIjoicmVjOHA3ZFFXd2doMlBvcnAiLCJzaG93Q29tbWVudHMiOmZhbHNlLCJxdWVyeU9yaWdpbkhpbnQiOnsidHlwZSI6InBhZ2VFbGVtZW50IiwiZWxlbWVudElkIjoicGVsSmM5QmgwWDIxMEpmUVEiLCJxdWVyeUNvbnRhaW5lcklkIjoicGVsUlNqc0xIbWhUVmJOaE4iLCJzYXZlZEZpbHRlclNldElkIjoic2ZzRGNnMUU3Mk9xSXVhYlgifX0">Goal Drift Quantification in Long-Horizon Tasks</a>
+                <br>
+                <a href="https://airtable.com/appypGt9DhCljq3Gh/shrpaJMUhvElTxcI8?detail=eyJwYWdlSWQiOiJwYWd5SURLVXg5WHk4bHlmMCIsInJvd0lkIjoicmVjaEhpdGthZkl3NkpCa0giLCJzaG93Q29tbWVudHMiOmZhbHNlLCJxdWVyeU9yaWdpbkhpbnQiOnsidHlwZSI6InBhZ2VFbGVtZW50IiwiZWxlbWVudElkIjoicGVsSmM5QmgwWDIxMEpmUVEiLCJxdWVyeUNvbnRhaW5lcklkIjoicGVsUlNqc0xIbWhUVmJOaE4iLCJzYXZlZEZpbHRlclNldElkIjoic2ZzRGNnMUU3Mk9xSXVhYlgifX0">Emergent Misalignment from Persona Fine-tuning</a>
+                <br>
+                <a href="https://airtable.com/appypGt9DhCljq3Gh/shrpaJMUhvElTxcI8?detail=eyJwYWdlSWQiOiJwYWd5SURLVXg5WHk4bHlmMCIsInJvd0lkIjoicmVjbWR0bTJNaVFxTkVhcUoiLCJzaG93Q29tbWVudHMiOmZhbHNlLCJxdWVyeU9yaWdpbkhpbnQiOnsidHlwZSI6InBhZ2VFbGVtZW50IiwiZWxlbWVudElkIjoicGVsSmM5QmgwWDIxMEpmUVEiLCJxdWVyeUNvbnRhaW5lcklkIjoicGVsUlNqc0xIbWhUVmJOaE4iLCJzYXZlZEZpbHRlclNldElkIjoic2ZzRGNnMUU3Mk9xSXVhYlgifX0">Agent Misalignment from Unreliable Tool Behavior</a>
+                <br>
+                <a href="https://airtable.com/appypGt9DhCljq3Gh/shrpaJMUhvElTxcI8?detail=eyJwYWdlSWQiOiJwYWd5SURLVXg5WHk4bHlmMCIsInJvd0lkIjoicmVjcmdyNmZMV2FKZFNGakkiLCJzaG93Q29tbWVudHMiOmZhbHNlLCJxdWVyeU9yaWdpbkhpbnQiOnsidHlwZSI6InBhZ2VFbGVtZW50IiwiZWxlbWVudElkIjoicGVsSmM5QmgwWDIxMEpmUVEiLCJxdWVyeUNvbnRhaW5lcklkIjoicGVsUlNqc0xIbWhUVmJOaE4iLCJzYXZlZEZpbHRlclNldElkIjoic2ZzRGNnMUU3Mk9xSXVhYlgifX0">Assessing Model Task Preferences</a>
+                <br>
+                
+                I plan to mentor more projects through other AI safety programs.
+                <br><br>
+                If you're interested in working together, please reach out with your background and research interests.
+            </p> -->
+            
+            <!-- <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Teaching</h3>
             <p style="margin-bottom: 1.5em;">
                 <strong>CS 401: Advanced Topics in AI Safety</strong> (Spring 2025)<br>
                 <span style="color: #666; font-size: 0.95em;">Graduate seminar covering alignment, interpretability, and robustness</span><br><br>
                 
                 <strong>CS 201: Introduction to Machine Learning</strong> (Fall 2024)<br>
                 <span style="color: #666; font-size: 0.95em;">Undergraduate course with special emphasis on responsible AI development</span>
-            </p>
+            </p> -->
             
             <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Service</h3>
             <p style="margin-bottom: 1.5em;">
-                <strong>Program Committee:</strong> NeurIPS 2025, ICML 2025, AAAI 2025, AI Safety Workshop 2024<br>
-                <strong>Reviewer:</strong> Nature Machine Intelligence, Journal of AI Research<br>
-                <strong>Organizer:</strong> Monthly AI Safety Reading Group, Annual Safety Research Symposium
+                <!-- <strong>Program Committee:</strong> NeurIPS 2025, ICML 2025, AAAI 2025, AI Safety Workshop 2024<br> -->
+                <strong>Reviewer:</strong> NeurIPS 2025 Mechanistic Interpretability workshop<br>
+                <!-- <strong>Organizer:</strong> Monthly AI Safety Reading Group, Annual Safety Research Symposium -->
             </p>
             
-            <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Selected Talks</h3>
+            <!-- <h3 style="font-size: 1.1em; margin-bottom: 1em; color: #2c2c2c;">Selected Talks</h3>
             <p style="margin-bottom: 1.5em;">
                 "The Alignment Problem: Technical Challenges and Solutions" — <em>MIT AI Colloquium, Oct 2024</em><br>
                 "Mechanistic Interpretability at Scale" — <em>DeepMind Research Seminar, Sep 2024</em><br>
@@ -630,23 +723,22 @@
                 Outside of research, I enjoy hiking, playing chess (1800 ELO on chess.com), 
                 and contributing to open-source AI safety tools. I'm also involved in effective altruism 
                 and regularly participate in AI governance discussions.
-            </p>
+            </p> -->
         </section>
 
         <!-- Contact -->
-        <section id="contact" class="section">
+        <!-- <section id="contact" class="section">
             <h2 class="section-title">Contact</h2>
             <p>
-                I welcome discussions about research collaborations, particularly on AI alignment, 
-                interpretability, and safety evaluation. I'm happy to talk with researchers at all 
-                career stages.
+                I welcome discussions about research collaborations, particularly on AI safety. 
+                I'm happy to talk with researchers at all career stages.
             </p>
             <p>
                 <strong>Email:</strong> <a href="mailto:your.email@domain.com">your.email@domain.com</a><br>
                 <strong>Office:</strong> Building Name, Room 456<br>
                 <strong>Office hours:</strong> Tuesdays 2–4 PM (by appointment)
             </p>
-        </section>
+        </section> -->
     </div>
 
     <script>
@@ -654,11 +746,14 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const navHeight = document.querySelector('.nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                     
                     // Update active tab
@@ -698,8 +793,9 @@
             
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.pageYOffset >= sectionTop) {
+                const sectionTop = section.offsetTop - 80;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
                     current = section.getAttribute('id');
                 }
             });
