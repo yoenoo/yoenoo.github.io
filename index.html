@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eyon Jang</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
     <style>
         * {
             margin: 0;
@@ -49,10 +51,25 @@
             margin-bottom: 3em;
         }
 
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e5e5e5;
+        }
+
         .name {
             font-size: 2.2em;
             font-weight: normal;
-            margin-bottom: 0.2em;
+            margin-bottom: 0;
         }
 
         .title-line {
@@ -269,6 +286,16 @@
                 padding-top: 5.5em; /* Adjust for smaller navbar on mobile */
             }
 
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image {
+                width: 80px;
+                height: 80px;
+            }
+
             .name {
                 font-size: 1.8em;
             }
@@ -422,8 +449,13 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1 class="name">Eyon Jang</h1>
-            <div class="title-line">A(G)I Safety Researcher</div>
+            <div class="header-top">
+                <img src="profile.png" alt="Eyon Jang" class="profile-image">
+                <div>
+                    <h1 class="name">Eyon Jang</h1>
+                    <div class="title-line">A(G)I Safety Researcher</div>
+                </div>
+            </div>
             <div class="contact-line">
                 <a href="mailto:yjang385@gmail.com" title="Email">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -453,7 +485,7 @@
                 <a href="https://lesswrong.com/users/eyon-jang" title="LessWrong">
                     LessWrong
                 </a>
-                <a href="/cv.pdf">CV</a>
+                <a href="https://drive.google.com/file/d/16xJho1gkhwPJcliyZO1qRN58_lIMhP0s/view?usp=sharing">CV</a>
             </div>
         </header>
 
@@ -464,8 +496,8 @@
                 <p>
                     I work on ensuring that AIs remain beneficial and aligned 
                     with human values as they become more capable. My research focuses on developing 
-                    methods for understanding, evaluating, and controlling advanced AI systems,
-                    with a particular focus on <a href="https://www.lesswrong.com/posts/FqpAPC48CzAtvfx5C/automating-ai-safety-what-we-can-do-today">AI R&D automation</a> and scalable alignment techniques using high-compute RL.
+                    methods for understanding, evaluating, and controlling advanced AI systems.
+                    I'm particularly interested in <a href="https://www.lesswrong.com/posts/FqpAPC48CzAtvfx5C/automating-ai-safety-what-we-can-do-today">AI R&D automation</a> and the threat models posed by it, as well as alignment techniques leveraging high-compute RL to develop mitigations that scale to superintelligence.
                 </p>
                 <p>
                     I am currently a <a href="https://www.matsprogram.org/">MATS</a> 8.0 scholar 
