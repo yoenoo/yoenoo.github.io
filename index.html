@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eyon Jang — Prototype 5: Terminal</title>
+    <title>Eyon Jang</title>
     <link rel="icon" type="image/png" href="fav.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -382,11 +382,86 @@
         }
         .service-detail { color: var(--ink); }
 
+        /* Footer meta — only visible on mobile */
+        .footer-meta { display: none; }
+
         @media (max-width: 700px) {
-            .container { padding: 3em 1.3em 4em; }
+            body { font-size: 14px; }
+            .container { padding: 4.5em 1.2em 3em; }
+
+            /* Nav: hide name to fit links on narrow screens */
+            .nav-container { padding: 0 1em; gap: 1em; height: 44px; }
+            .nav-name { display: none; }
+            .nav-container { font-size: 0.78em; justify-content: center; }
+
+            /* Header: stack headshot inline (not absolute) */
+            .header {
+                min-height: auto;
+                padding-right: 0;
+                margin-bottom: 1.5em;
+            }
+            .header-text {
+                padding-right: 0;
+            }
+            .headshot {
+                position: static;
+                width: 90px;
+                height: 90px;
+                margin-bottom: 0.6em;
+                top: auto;
+                right: auto;
+            }
             h1 { font-size: 2em; }
-            .news-item { grid-template-columns: 1fr; gap: 0.2em; }
-            .header-meta { flex-direction: column; gap: 0.4em; }
+            .tagline { font-size: 1em; margin-bottom: 0.4em; }
+            .header-meta { display: none; }
+            .footer-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.6em 1.2em;
+                margin-top: 3em;
+                padding: 1.5em 0;
+                border-top: 1px dashed var(--rule);
+                font-size: 0.9em;
+                color: var(--muted);
+            }
+            .footer-meta a {
+                color: var(--accent);
+                text-decoration: underline;
+                text-decoration-thickness: 1px;
+                text-underline-offset: 3px;
+            }
+            .footer-meta a:hover { color: var(--ink); }
+
+            /* Projects: stack thumbnail above content */
+            .project {
+                flex-direction: column;
+                gap: 0.8em;
+            }
+            .project-thumb {
+                width: 100%;
+                height: 160px;
+            }
+            .project.featured {
+                margin-left: 0;
+                margin-right: 0;
+                padding: 1em;
+            }
+            .project:hover { transform: none; }
+
+            /* News: stack date above title */
+            .news-item {
+                grid-template-columns: 1fr;
+                gap: 0.2em;
+                padding: 0.8em 0.7em;
+                margin: 0 -0.7em;
+            }
+            .news-date { font-size: 0.85em; }
+
+            /* Service: tighter columns */
+            .service-row { grid-template-columns: 80px 1fr; gap: 0.6em; }
+
+            /* Featured tag: smaller */
+            .project-tag { font-size: 0.65em; }
         }
     </style>
 </head>
@@ -512,6 +587,15 @@
                 </div>
             </div>
         </section>
+
+        <div class="footer-meta">
+            <a href="mailto:eyon@eyonjang.me">email</a>
+            <a href="https://linkedin.com/in/yeonwoojang">linkedin</a>
+            <a href="https://x.com/eyonjang">x</a>
+            <a href="https://github.com/yoenoo">github</a>
+            <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ&sortby=pubdate">google scholar</a>
+            <a href="https://lesswrong.com/users/eyon-jang">lesswrong</a>
+        </div>
     </div>
 
     <script>
