@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyon Jang — Prototype 6: Essay</title>
+    <link rel="icon" type="image/svg+xml" href="../headshot.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink: #1a1a1a;
+            --body: #2a2a2a;
+            --muted: #757575;
+            --rule: #e5e3df;
+            --bg: #fefcf8;
+            --link: #1a1a1a;
+        }
+
+        body {
+            font-family: 'EB Garamond', 'Charter', Georgia, serif;
+            font-size: 19px;
+            line-height: 1.55;
+            color: var(--body);
+            background: var(--bg);
+            font-feature-settings: "kern", "liga", "onum";
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: none;
+            border-bottom: 1px solid var(--muted);
+            transition: border-color 0.15s, color 0.15s;
+            padding-bottom: 1px;
+        }
+        a:hover {
+            border-bottom-color: var(--ink);
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 5em 2em 6em;
+        }
+
+        /* HEADER — minimal, just identity */
+        .header {
+            margin-bottom: 4em;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5em;
+        }
+        .profile-image {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            margin-top: 0.3em;
+        }
+        .header-text { flex: 1; }
+        .name {
+            font-size: 1.45em;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.1;
+            margin-bottom: 0.1em;
+        }
+        .title-line {
+            font-size: 1em;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 0.6em;
+        }
+        .header-links {
+            font-size: 0.85em;
+            color: var(--muted);
+        }
+        .header-links a {
+            color: var(--muted);
+            border-bottom: none;
+            margin-right: 1em;
+            transition: color 0.15s;
+        }
+        .header-links a:hover { color: var(--ink); }
+
+        /* ESSAY BODY */
+        .essay { font-size: 1em; }
+        .essay p {
+            margin-bottom: 1.1em;
+            text-align: left;
+            hyphens: auto;
+        }
+        .essay p.opening {
+            font-size: 1.25em;
+            line-height: 1.45;
+            color: var(--ink);
+            margin-bottom: 1.5em;
+        }
+        .essay p.opening::first-letter {
+            font-weight: 500;
+            font-size: 1.6em;
+            line-height: 1;
+            float: left;
+            padding: 0.05em 0.08em 0 0;
+            color: var(--ink);
+        }
+
+        /* SECTION RULE — just a small flourish */
+        .section-rule {
+            text-align: center;
+            margin: 4em 0 2.5em;
+            color: var(--muted);
+            font-size: 1.1em;
+            letter-spacing: 0.5em;
+        }
+        .section-rule::before { content: '· · ·'; }
+        .section-label {
+            text-align: center;
+            font-size: 0.78em;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            margin: 4em 0 2em;
+        }
+
+        /* PROJECT — feels like a referenced work, not a card */
+        .project {
+            margin-bottom: 2em;
+        }
+        .project-title {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: var(--ink);
+            display: inline;
+        }
+        .project-status {
+            display: inline;
+            font-size: 0.85em;
+            font-style: italic;
+            color: var(--muted);
+            margin-left: 0.4em;
+        }
+        .project-status.ongoing { color: #6b4523; }
+        .project-meta {
+            font-size: 0.88em;
+            color: var(--muted);
+            font-style: italic;
+            margin: 0.2em 0 0.5em;
+        }
+        .project-description {
+            font-size: 0.98em;
+            margin-bottom: 0.5em;
+            color: var(--body);
+        }
+        .project-links {
+            font-size: 0.88em;
+            color: var(--muted);
+        }
+        .project-links a {
+            color: var(--muted);
+            border-bottom-color: var(--rule);
+            margin-right: 0.8em;
+        }
+        .project-links a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+        /* NEWS — like a journal */
+        .news-list {
+            font-size: 0.98em;
+        }
+        .news-entry {
+            margin-bottom: 1em;
+            padding-left: 1em;
+            border-left: 2px solid var(--rule);
+        }
+        .news-entry:hover { border-left-color: var(--ink); }
+        .news-date {
+            font-style: italic;
+            color: var(--muted);
+            font-size: 0.9em;
+        }
+        .news-text {
+            display: block;
+            color: var(--body);
+            margin-top: 0.1em;
+        }
+        .news-text b { color: var(--ink); font-weight: 500; }
+
+        /* MISC */
+        .misc-list {
+            list-style: none;
+            line-height: 1.85;
+        }
+        .misc-list li::before {
+            content: '— ';
+            color: var(--muted);
+        }
+
+        @media (max-width: 700px) {
+            body { font-size: 18px; }
+            .container { padding: 3em 1.4em 4em; }
+            .header { flex-direction: column; gap: 0.8em; }
+            .name { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="../headshot.png" alt="Eyon Jang" class="profile-image">
+            <div class="header-text">
+                <div class="name">Eyon Jang</div>
+                <div class="title-line">A(G)I safety researcher</div>
+                <div class="header-links">
+                    <a href="mailto:yjang385@gmail.com">email</a>
+                    <a href="https://github.com/yoenoo">github</a>
+                    <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ">scholar</a>
+                    <a href="https://x.com/eyonjang">twitter</a>
+                    <a href="https://lesswrong.com/users/eyon-jang">lesswrong</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="essay">
+            <p class="opening">I work on ensuring that AIs remain beneficial and aligned with human values as they become more capable.</p>
+
+            <p>My research focuses on developing methods for understanding, evaluating, and controlling advanced AI systems. I'm particularly interested in <a href="https://www.lesswrong.com/posts/FqpAPC48CzAtvfx5C/automating-ai-safety-what-we-can-do-today">AI R&D automation</a> and threat models posed by it, as well as alignment techniques leveraging high-compute RL to develop mitigations that scale to superintelligence.</p>
+
+            <p>I am currently a <a href="https://www.matsprogram.org/">MATS</a> scholar researching <a href="https://www.lesswrong.com/posts/Dft9vpMnEeWFE3Gc6/exploration-hacking-can-reasoning-models-subvert-rl-1">exploration hacking</a> and <a href="https://github.com/yoenoo/aaa/tree/main">automated alignment auditing</a>, mentored by <a href="https://www.davidlindner.me/">David Lindner</a>, <a href="https://rzimmermann.com/">Roland Zimmermann</a> (Google DeepMind AGI Safety and Alignment), and <a href="https://www.scottemmons.com/">Scott Emmons</a> (Anthropic Alignment Science).</p>
+
+            <p>Previously, I spent six years as a quantitative researcher on Wall Street. I received my MSc in Statistics and Machine Learning (with Distinction) from the University of Oxford, where I was supervised by <a href="https://www.stats.ox.ac.uk/~teh/">Yee Whye Teh</a> and <a href="https://www.stat.ubc.ca/~benbr/">Benjamin Bloem-Reddy</a>. My broader interests span alignment, AI control, scalable oversight, and reinforcement learning.</p>
+        </div>
+
+        <div class="section-label">Research</div>
+
+        <div class="project">
+            <span class="project-title">Automated Alignment Auditing</span>
+            <span class="project-status ongoing">— ongoing</span>
+            <div class="project-meta">MATS 8.2 · with Alex Serrano</div>
+            <div class="project-description">An automated alignment-auditing framework for production coding agents (Claude Code, Codex CLI, Gemini CLI), built on top of <a href="https://github.com/meridianlabs-ai/inspect_petri">Petri</a>. An auditor model probes a target agent across scripted scenarios, and independent judges score the resulting transcripts for scheming behaviors.</div>
+            <div class="project-links"><a href="https://github.com/yoenoo/aaa/tree/main">github</a></div>
+        </div>
+
+        <div class="project">
+            <span class="project-title">Model Organisms of Exploration Hacking</span>
+            <span class="project-status">— published</span>
+            <div class="project-meta">MATS 8.1 · with Damon Falck, Joschka Braun</div>
+            <div class="project-description"><i>Can reasoning models undermine RL training by manipulating their exploration?</i> Through model organisms experiments in realistic settings, we develop a science of when and how models can influence their own RL training, and what causes current frontier models to do so in the wild.</div>
+            <div class="project-links">
+                <a href="https://arxiv.org/abs/2604.28182">paper</a>
+                <a href="https://openreview.net/forum?id=L0EGKqOBpz">openreview</a>
+                <a href="https://www.lesswrong.com/posts/Dft9vpMnEeWFE3Gc6/exploration-hacking-can-reasoning-models-subvert-rl-1">blog</a>
+                <a href="https://github.com/yoenoo/exploration_hacking">github</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <span class="project-title">Prompt Attacks Reveal Superficial Knowledge Removal in Unlearning Methods</span>
+            <span class="project-status">— published</span>
+            <div class="project-meta">COLM 2025 SoLaR workshop · with Shariqah Hossain, Ashwin Sreevatsa, Diogo Cruz</div>
+            <div class="project-description">We investigate whether machine unlearning methods genuinely remove knowledge or merely suppress it, revealing that some approaches remain vulnerable to simple prompt attacks.</div>
+            <div class="project-links">
+                <a href="https://arxiv.org/abs/2506.10236">paper</a>
+                <a href="https://github.com/diogo-cruz/prompt_attacks_paper">github</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <span class="project-title">Automating AI Safety Research using AIs</span>
+            <span class="project-status">— published</span>
+            <div class="project-meta">LessWrong · with Matthew Shinkle*, Jacques Thibodeau</div>
+            <div class="project-description">A unified pipeline of AI agent tools for automating interpretability research — literature search and parsing, codebase discovery, designing and executing experiments — demonstrated on <a href="https://arxiv.org/abs/2503.09532">SAEBench</a>.</div>
+            <div class="project-links">
+                <a href="https://www.lesswrong.com/posts/FqpAPC48CzAtvfx5C/automating-ai-safety-what-we-can-do-today">lesswrong</a>
+                <a href="https://github.com/MShinkle/automation_projects_pilots/tree/main">github</a>
+            </div>
+        </div>
+
+        <div class="section-label">News</div>
+
+        <div class="news-list">
+            <div class="news-entry"><span class="news-date">April 2026.</span> <span class="news-text"><b>"Exploration Hacking: Can LLMs Learn to Resist RL Training?"</b> accepted to ICML 2026 Main Conference.</span></div>
+            <div class="news-entry"><span class="news-date">February 2026.</span> <span class="news-text">New blog post on <a href="https://www.lesswrong.com/posts/suRWiTNnazrRsoBKR/a-conceptual-framework-for-exploration-hacking">A Conceptual Framework for Exploration Hacking</a>.</span></div>
+            <div class="news-entry"><span class="news-date">February 2026.</span> <span class="news-text">Accepted to <b>MATS 8.2</b> (Extension+) — secured another 6 months of funding to continue research on exploration hacking and automated alignment auditing.</span></div>
+            <div class="news-entry"><span class="news-date">December 2025.</span> <span class="news-text"><b>"Resisting RL Elicitation of Biosecurity Capabilities"</b> accepted to NeurIPS 2025 Biosecurity workshop (Oral). Awarded <b>Best Paper Runner-Up</b>.</span></div>
+            <div class="news-entry"><span class="news-date">October 2025.</span> <span class="news-text">Joined Algoverse Fall 2025 as a mentor — 2 projects on AI control.</span></div>
+            <div class="news-entry"><span class="news-date">August 2025.</span> <span class="news-text">Accepted to <b>MATS 8.1</b> (Extension); project selected as a spotlight talk at the MATS Symposium.</span></div>
+            <div class="news-entry"><span class="news-date">August 2025.</span> <span class="news-text">SPAR Fall 2025 mentor — co-mentoring 3 projects with Diogo Cruz.</span></div>
+            <div class="news-entry"><span class="news-date">July 2025.</span> <span class="news-text"><b>"Prompt Attacks Reveal Superficial Knowledge Removal in Unlearning Methods"</b> accepted to COLM 2025 SoLaR workshop.</span></div>
+            <div class="news-entry"><span class="news-date">June 2025.</span> <span class="news-text">Accepted to <b>MATS 8.0</b> (Google DeepMind stream).</span></div>
+        </div>
+
+        <div class="section-label">Mentoring & Service</div>
+
+        <div class="essay">
+            <p>I find it deeply fulfilling to help talented researchers transition into technical AI safety. I'm currently mentoring five projects through <a href="https://sparai.org/">SPAR</a> and <a href="https://algoverseairesearch.org/">Algoverse</a>:</p>
+            <ul class="misc-list">
+                <li><a href="#">Goal Drift Quantification in Long-Horizon Tasks</a></li>
+                <li><a href="#">Emergent Misalignment from Persona Fine-tuning</a></li>
+                <li><a href="#">Agent Misalignment from Unreliable Tool Behavior</a></li>
+                <li><a href="#">Scaling behavior of CoT monitoring</a></li>
+                <li><a href="#">Reward hacking detection benchmark</a></li>
+            </ul>
+            <p style="margin-top: 1.2em;">If you're interested in working together, please reach out with your background and research interests.</p>
+            <p style="margin-top: 1.5em; font-size: 0.92em; color: var(--muted);"><i>Reviewer for NeurIPS 2025 Mechanistic Interpretability workshop.</i></p>
+        </div>
+    </div>
+</body>
+</html>
