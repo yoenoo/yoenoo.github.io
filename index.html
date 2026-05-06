@@ -375,6 +375,7 @@
             border-bottom: 1px dashed var(--rule);
         }
         .service-row:last-child { border-bottom: none; }
+        .service-row.no-separator { border-bottom: none; padding-bottom: 0; }
         .service-role {
             font-family: 'JetBrains Mono', monospace;
             color: var(--accent);
@@ -581,8 +582,12 @@
         <section class="section" id="service">
             <h2 class="section-title">service</h2>
             <div class="service-list">
-                <div class="service-row">
+                <div class="service-row no-separator">
                     <span class="service-role">reviewer</span>
+                    <span class="service-detail">ICML 2026 Mechanistic Interpretability workshop</span>
+                </div>
+                <div class="service-row">
+                    <span class="service-role"></span>
                     <span class="service-detail">NeurIPS 2025 Mechanistic Interpretability workshop</span>
                 </div>
             </div>
