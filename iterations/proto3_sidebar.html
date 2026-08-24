@@ -109,6 +109,7 @@
 
         .section { margin-bottom: 4em; scroll-margin-top: 2em; }
         .section:first-child { margin-top: 0; }
+        .section:last-child { margin-bottom: 0; }
         .section-title {
             font-size: 0.78em;
             font-weight: 500;
@@ -210,13 +211,13 @@
                 height: auto;
                 border-right: none;
                 border-bottom: none;
-                padding: 2.5em 1.5em 2em;
+                padding: 2.5em 1.5em 0.75em;
             }
             .title-line { margin-bottom: 0; }
             .sidebar-nav { display: none; }
             .sidebar-nav a::before { display: none; }
             .contact { order: 1; margin: 1em 0 0; padding-top: 0; border-top: none; }
-            .main { padding: 2.5em 1.5em 3em; }
+            .main { padding: 1.5em 1.5em 3em; }
             .news-item { grid-template-columns: 1fr; gap: 0.2em; }
         }
     </style>
