@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favicon Preview · Eyon Jang</title>
+  <link id="page-favicon" rel="icon" type="image/svg+xml" href="assets/favicons/inverse-network.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --ink: #111;
+      --body: #3b3b3b;
+      --muted: #777;
+      --rule: #dededb;
+      --bg: #fafaf9;
+      --paper: #fff;
+    }
+    body {
+      margin: 0;
+      color: var(--body);
+      background: var(--bg);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { width: min(1040px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
+    header { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; margin-bottom: 32px; }
+    h1 { margin: 0 0 8px; color: var(--ink); font-size: clamp(30px, 5vw, 48px); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
+    .intro { max-width: 590px; margin: 0; color: var(--muted); font-size: 15px; }
+    .return { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+
+    .browser {
+      overflow: hidden;
+      margin-bottom: 36px;
+      border: 1px solid #cbcaca;
+      border-radius: 14px;
+      background: var(--paper);
+      box-shadow: 0 18px 45px rgba(17,17,17,.08);
+    }
+    .browser-bar { display: flex; align-items: end; height: 58px; padding: 0 14px; background: #e9e8e6; }
+    .traffic { display: flex; gap: 7px; align-self: center; margin-right: 20px; }
+    .traffic i { display: block; width: 10px; height: 10px; border-radius: 50%; background: #c6c5c2; }
+    .tab {
+      display: flex; align-items: center; gap: 10px; width: min(330px, 70vw); height: 42px; padding: 0 14px;
+      border-radius: 10px 10px 0 0; color: #363636; background: var(--paper); font-size: 13px;
+    }
+    .tab img { width: 16px; height: 16px; flex: 0 0 auto; }
+    .tab span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .browser-page { display: grid; min-height: 176px; place-items: center; border-top: 1px solid #ddd; background: #fafaf9; }
+    .browser-page p { margin: 0; color: #999; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .group-title { margin: 32px 0 12px; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+    .card { padding: 18px; border: 1px solid var(--rule); border-radius: 12px; background: rgba(255,255,255,.72); transition: border-color .15s, transform .15s; }
+    .card:hover { transform: translateY(-2px); border-color: #aaa; }
+    .card.selected { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+    .hero-icon { display: block; width: 82px; height: 82px; margin-bottom: 18px; }
+    h2 { margin: 0 0 5px; color: var(--ink); font-size: 15px; font-weight: 600; }
+    .description { min-height: 66px; margin: 0 0 16px; color: var(--muted); font-size: 12px; }
+    .sizes { display: flex; height: 34px; align-items: center; gap: 10px; margin-bottom: 15px; }
+    .sizes img:nth-child(1) { width: 16px; height: 16px; }
+    .sizes img:nth-child(2) { width: 24px; height: 24px; }
+    .sizes img:nth-child(3) { width: 32px; height: 32px; }
+    .actions { display: flex; gap: 8px; }
+    button, .download {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 34px; padding: 0 11px;
+      border: 1px solid var(--ink); border-radius: 7px; font: inherit; font-size: 12px; text-decoration: none; cursor: pointer;
+    }
+    button { color: #fff; background: var(--ink); }
+    .download { color: var(--ink); background: transparent; }
+    footer { margin-top: 28px; color: var(--muted); font-size: 12px; }
+    code { color: var(--ink); }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) {
+      main { width: min(100% - 28px, 1040px); padding-top: 38px; }
+      header { grid-template-columns: 1fr; gap: 14px; }
+      .grid { grid-template-columns: 1fr; }
+      .description { min-height: auto; }
+      .traffic { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Favicon studies</h1>
+        <p class="intro">Click “Try in tab” to apply an option to this browser tab. The new monochrome studies use the same ink and warm white as the main site.</p>
+      </div>
+      <a class="return" href="index.html">Back to site</a>
+    </header>
+
+    <section class="browser" aria-label="Simulated browser preview">
+      <div class="browser-bar">
+        <div class="traffic" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="tab"><img id="tab-icon" src="assets/favicons/inverse-network.svg" alt=""><span id="tab-title">Eyon Jang — Alignment Researcher</span></div>
+      </div>
+      <div class="browser-page"><p>Actual 16 px tab preview above</p></div>
+    </section>
+
+    <h2 class="group-title">Monochrome studies</h2>
+    <section class="grid" aria-label="Monochrome favicon options">
+      <article class="card selected" data-name="Inverse network" data-file="inverse-network.svg">
+        <img class="hero-icon" src="assets/favicons/inverse-network.svg" alt="Inverse network favicon">
+        <h2>Inverse network</h2>
+        <p class="description">The existing research motif reduced to the site’s black and warm white.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/inverse-network.svg" alt=""><img src="assets/favicons/inverse-network.svg" alt=""><img src="assets/favicons/inverse-network.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/inverse-network.svg" download>Download</a></div>
+      </article>
+      <article class="card" data-name="Bare network" data-file="bare-network.svg">
+        <img class="hero-icon" src="assets/favicons/bare-network.svg" alt="Bare network favicon">
+        <h2>Bare network</h2>
+        <p class="description">A quieter transparent mark that echoes the site’s line icons.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/bare-network.svg" alt=""><img src="assets/favicons/bare-network.svg" alt=""><img src="assets/favicons/bare-network.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/bare-network.svg" download>Download</a></div>
+      </article>
+      <article class="card" data-name="Negative-space E" data-file="monogram-e-mono.svg">
+        <img class="hero-icon" src="assets/favicons/monogram-e-mono.svg" alt="Negative-space E favicon">
+        <h2>Negative-space E</h2>
+        <p class="description">A personal, geometric monogram with maximum small-size clarity.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/monogram-e-mono.svg" alt=""><img src="assets/favicons/monogram-e-mono.svg" alt=""><img src="assets/favicons/monogram-e-mono.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/monogram-e-mono.svg" download>Download</a></div>
+      </article>
+      <article class="card" data-name="Node bookmark" data-file="node-bookmark.svg">
+        <img class="hero-icon" src="assets/favicons/node-bookmark.svg" alt="Node bookmark favicon">
+        <h2>Node bookmark</h2>
+        <p class="description">A writing symbol with a small node-and-stem cut into its center.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/node-bookmark.svg" alt=""><img src="assets/favicons/node-bookmark.svg" alt=""><img src="assets/favicons/node-bookmark.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/node-bookmark.svg" download>Download</a></div>
+      </article>
+      <article class="card" data-name="Alignment mark" data-file="alignment-mark.svg">
+        <img class="hero-icon" src="assets/favicons/alignment-mark.svg" alt="Alignment mark favicon">
+        <h2>Alignment mark</h2>
+        <p class="description">Offset target geometry for evaluation, calibration, and alignment.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/alignment-mark.svg" alt=""><img src="assets/favicons/alignment-mark.svg" alt=""><img src="assets/favicons/alignment-mark.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/alignment-mark.svg" download>Download</a></div>
+      </article>
+    </section>
+
+    <h2 class="group-title">Earlier color studies</h2>
+    <section class="grid" aria-label="Color favicon options">
+      <article class="card" data-name="Off-kilter network" data-file="network.svg">
+        <img class="hero-icon" src="assets/favicons/network.svg" alt="Off-kilter network favicon">
+        <h2>Off-kilter network</h2>
+        <p class="description">Teal field, irregular geometry, and one coral signal node.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/network.svg" alt=""><img src="assets/favicons/network.svg" alt=""><img src="assets/favicons/network.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/network.svg" download>Download</a></div>
+      </article>
+      <article class="card" data-name="Orbit target" data-file="orbit.svg">
+        <img class="hero-icon" src="assets/favicons/orbit.svg" alt="Orbit target favicon">
+        <h2>Orbit target</h2>
+        <p class="description">An off-center evaluation ring with a coral anomaly.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/orbit.svg" alt=""><img src="assets/favicons/orbit.svg" alt=""><img src="assets/favicons/orbit.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/orbit.svg" download>Download</a></div>
+      </article>
+      <article class="card" data-name="Folded bookmark" data-file="bookmark.svg">
+        <img class="hero-icon" src="assets/favicons/bookmark.svg" alt="Folded bookmark favicon">
+        <h2>Folded bookmark</h2>
+        <p class="description">A bold editorial mark with a small teal corner detail.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/bookmark.svg" alt=""><img src="assets/favicons/bookmark.svg" alt=""><img src="assets/favicons/bookmark.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/bookmark.svg" download>Download</a></div>
+      </article>
+      <article class="card" data-name="Modular E" data-file="monogram-e.svg">
+        <img class="hero-icon" src="assets/favicons/monogram-e.svg" alt="Modular E favicon">
+        <h2>Modular E</h2>
+        <p class="description">A personal monogram built from offset geometric blocks.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/monogram-e.svg" alt=""><img src="assets/favicons/monogram-e.svg" alt=""><img src="assets/favicons/monogram-e.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/monogram-e.svg" download>Download</a></div>
+      </article>
+      <article class="card" data-name="Signal window" data-file="signal.svg">
+        <img class="hero-icon" src="assets/favicons/signal.svg" alt="Signal window favicon">
+        <h2>Signal window</h2>
+        <p class="description">A dark technical mark with a bright activation trace.</p>
+        <div class="sizes" aria-label="Size previews"><img src="assets/favicons/signal.svg" alt=""><img src="assets/favicons/signal.svg" alt=""><img src="assets/favicons/signal.svg" alt=""></div>
+        <div class="actions"><button type="button">Try in tab</button><a class="download" href="assets/favicons/signal.svg" download>Download</a></div>
+      </article>
+    </section>
+
+    <footer>The main site still uses <code>assets/fav.png</code>; this page does not change it.</footer>
+  </main>
+  <script>
+    const favicon = document.querySelector('#page-favicon');
+    const tabIcon = document.querySelector('#tab-icon');
+    const tabTitle = document.querySelector('#tab-title');
+    const cards = [...document.querySelectorAll('.card')];
+
+    cards.forEach(card => {
+      card.querySelector('button').addEventListener('click', () => {
+        const path = `assets/favicons/${card.dataset.file}`;
+        favicon.href = `${path}?v=${Date.now()}`;
+        tabIcon.src = path;
+        tabTitle.textContent = `${card.dataset.name} · Eyon Jang`;
+        document.title = `${card.dataset.name} · Favicon Preview`;
+        cards.forEach(item => item.classList.toggle('selected', item === card));
+      });
+    });
+  </script>
+</body>
+</html>
