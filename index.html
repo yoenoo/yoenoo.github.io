@@ -7,626 +7,375 @@
     <link rel="icon" type="image/png" href="assets/fav.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #fafafa;
-            --ink: #000000;
-            --body: #000000;
-            --muted: #737373;
-            --rule: #d4d4d4;
-            --accent: #1e3a8a;
+            --ink: #111;
+            --body: #333;
+            --muted: #888;
+            --rule: #ececec;
+            --bg: #fff;
         }
 
         body {
-            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-            font-size: 16px;
-            line-height: 1.7;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 14.5px;
+            line-height: 1.65;
             color: var(--body);
             background: var(--bg);
+            font-feature-settings: "ss01", "cv11";
             -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-decoration-style: solid;
-            text-underline-offset: 3px;
-            text-decoration-thickness: 1px;
-            transition: color 0.15s;
-        }
-        a:hover { color: var(--ink); }
+        h1, h2, h3 { font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
 
-        .container {
-            max-width: 880px;
+        a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); transition: border-color 0.15s; }
+        a:hover { border-bottom-color: var(--ink); }
+
+        /* Layout: sidebar + main */
+        .layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 5.5em 2em 5em;
+            min-height: 100vh;
         }
 
-        /* NAV */
-        .nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            background: color-mix(in srgb, var(--bg) 88%, transparent);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px dashed var(--rule);
-        }
-        .nav-container {
-            max-width: 880px;
-            margin: 0 auto;
-            padding: 0 2em;
-            display: flex;
-            align-items: center;
-            gap: 1.4em;
-            height: 48px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.82em;
-        }
-        .nav-name {
-            color: var(--accent);
-            margin-right: auto;
-            font-weight: 700;
-        }
-        .nav a {
-            color: var(--muted);
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-        .nav a:hover, .nav a.active {
-            color: var(--ink);
-        }
-
-        .section { scroll-margin-top: 60px; }
-
-        /* HEADER */
-        .header {
-            margin-bottom: 4em;
-            position: relative;
-            min-height: calc(1.4em + 130px + 1.5em);
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            padding: 4em 2.5em 3em;
+            border-right: 1px solid var(--rule);
             display: flex;
             flex-direction: column;
         }
-        .header-text {
-            padding-right: 155px;
-        }
-        .headshot {
-            position: absolute;
-            top: 0.0em;
-            right: 0;
-            width: 130px;
-            height: 130px;
+        .profile-image {
+            width: 120px; height: 120px;
             border-radius: 12px;
             object-fit: cover;
-            border: 1px solid var(--rule);
-        }
-        .header-line {
-            color: var(--muted);
-            font-size: 0.9em;
-            margin-bottom: 0.4em;
-        }
-        .header-line .prompt { color: var(--accent); margin-right: 0.5em; }
-        .header-line .cursor {
-            color: var(--accent);
-            margin-left: 0.2em;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            50.01%, 100% { opacity: 0; }
-        }
-        h1 {
-            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-weight: 700;
-            font-size: 2.8em;
-            color: var(--ink);
-            letter-spacing: -0.025em;
-            line-height: 1.05;
-            margin: 0.5em 0 0.3em;
-        }
-        .tagline {
-            font-family: 'Lato', sans-serif;
-            font-weight: 400;
-            font-size: 1.2em;
-            color: color-mix(in srgb, var(--muted) 50%, var(--body));
             margin-bottom: 1.5em;
         }
-        .header-meta {
-            font-size: 0.85em;
-            color: var(--muted);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5em;
-            padding-top: 1em;
-            border-top: 1px dashed var(--rule);
-            margin-top: auto;
+        .name {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 0.2em;
+            letter-spacing: -0.02em;
         }
-        .header-meta .label { color: var(--accent); margin-right: 0.5em; }
-        .header-meta .label::after { content: ':'; }
-        .header-meta a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-decoration-style: solid;
-            text-decoration-thickness: 1px;
-            text-underline-offset: 3px;
+        .title-line {
+            font-size: 0.88em;
+            color: var(--muted);
+            margin-bottom: 2.5em;
+        }
+
+        .sidebar-nav { display: flex; flex-direction: column; gap: 0.8em; margin-bottom: auto; }
+        .sidebar-nav a {
+            color: var(--muted);
+            font-size: 0.88em;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.7em;
             transition: color 0.15s;
         }
-        .header-meta a:hover {
-            color: var(--ink);
+        .sidebar-nav a::before {
+            content: '';
+            width: 12px; height: 1px;
+            background: currentColor;
+            transition: width 0.2s;
         }
+        .sidebar-nav a:hover, .sidebar-nav a.active { color: var(--ink); }
+        .sidebar-nav a:hover::before, .sidebar-nav a.active::before { width: 24px; }
 
-        /* SECTIONS */
-        .section { margin-bottom: 3.5em; }
-        .section-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95em;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 1.5em;
-            padding-bottom: 0.5em;
-            border-bottom: 1px dashed var(--rule);
-        }
-        .section-title::before {
-            content: '## ';
-            color: var(--accent);
-            font-weight: 400;
-        }
-
-        /* PROSE — switch to serif for readability */
-        .prose {
-            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.1em;
-            line-height: 1.65;
-            color: var(--ink);
-        }
-        .prose p { margin-bottom: 1.1em; }
-        .prose .interests {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78em;
-            color: var(--muted);
-            margin-top: 1.5em;
-            padding-left: 1em;
-            border-left: 2px solid var(--accent);
-        }
-        .prose .interests::before {
-            content: '// ';
-            color: var(--accent);
-        }
-
-        /* PROJECTS */
-        .project {
+        .contact {
             display: flex;
-            gap: 1.4em;
-            align-items: flex-start;
-            margin-bottom: 2em;
-            transition: transform 0.2s ease;
+            gap: 1em;
+            margin-top: 2em;
+            padding-top: 1.5em;
+            border-top: 1px solid var(--rule);
         }
-        .project:hover { transform: translateX(4px); }
-        .project-thumb {
-            width: 180px;
-            height: 110px;
-            flex-shrink: 0;
-            object-fit: cover;
-            border-radius: 4px;
-            border: 1px solid var(--rule);
-        }
-        .project-content { flex: 1; min-width: 0; }
+        .contact a { border: none; }
+        .contact svg { width: 16px; height: 16px; fill: var(--muted); transition: fill 0.15s; }
+        .contact a:hover svg { fill: var(--ink); }
 
-        .project.featured {
-            padding: 1.2em;
-            margin-left: -1.2em;
-            margin-right: -1.2em;
-            margin-bottom: 2.5em;
-            background: rgba(0, 0, 0, 0.025);
-            border-radius: 6px;
-            border: 1px solid var(--rule);
+        /* Main */
+        .main {
+            padding: 4em 4em 5em;
+            max-width: 720px;
         }
-        .project-tag {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7em;
-            color: var(--accent);
-            font-weight: 700;
+
+        .section { margin-bottom: 4em; scroll-margin-top: 2em; }
+        .section:first-child { margin-top: 0; }
+        .section-title {
+            font-size: 0.78em;
+            font-weight: 500;
+            color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            margin-bottom: 0.5em;
+            margin-bottom: 1.8em;
         }
-        .project-title {
-            font-family: 'Lato', sans-serif;
-            font-size: 1.05em;
-            font-weight: 400;
-            color: var(--ink);
-            margin-bottom: 0.3em;
-            line-height: 1.3;
-        }
-        .project-meta {
-            font-size: 0.78em;
-            color: var(--muted);
-            margin-bottom: 0.6em;
-        }
-        .project-status {
-            display: inline-block;
+        .section-note {
+            margin: -0.6em 0 2em;
+            font-size: 0.88em;
             color: var(--muted);
         }
-        .project-status.ongoing { color: var(--accent); }
-        .project-status::before { content: '['; }
-        .project-status::after { content: ']'; }
-        .project-description {
-            font-family: 'Lato', sans-serif;
-            font-size: 0.95em;
-            line-height: 1.6;
-            color: var(--body);
-            margin-bottom: 0.6em;
-        }
-        .project-links {
-            font-size: 0.78em;
-            display: flex;
-            gap: 0.8em;
-            flex-wrap: wrap;
-        }
-        .project-links a::before { content: '['; color: var(--muted); }
-        .project-links a::after { content: ']'; color: var(--muted); }
 
-        /* NEWS */
-        .news-list {
-            font-family: 'Lato', sans-serif;
-            font-size: 1em;
-            line-height: 1.55;
+        .intro-text { font-size: 1em; }
+        .intro-text p { margin-bottom: 1.1em; color: var(--body); }
+        .intro-text p:first-child {
+            font-size: 1.18em;
+            line-height: 1.5;
+            color: var(--ink);
+            margin-bottom: 1.5em;
         }
+        .interests {
+            margin-top: 1.5em;
+            font-size: 0.88em;
+            color: var(--muted);
+        }
+
+        /* Projects */
+        .project { margin-bottom: 2.2em; }
+        .project:last-child { margin-bottom: 0; }
+        .project-title {
+            font-size: 1.05em;
+            font-weight: 600;
+            margin-bottom: 0.4em;
+            color: var(--ink);
+        }
+        .project-meta { font-size: 0.85em; color: var(--muted); margin-bottom: 0.7em; }
+        .project-description { font-size: 0.95em; margin-bottom: 0.7em; }
+        .project-links { font-size: 0.85em; display: flex; gap: 1em; flex-wrap: wrap; }
+        .project-links a {
+            color: var(--muted);
+            border-bottom: 1px solid var(--rule);
+        }
+        .project-links a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+        /* Status */
+        .status {
+            display: inline-block;
+            font-size: 0.7em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 1px 7px;
+            border-radius: 2px;
+            vertical-align: middle;
+        }
+        .status.published { background: #f0f0f0; color: #444; }
+        .status.ongoing { background: var(--ink); color: #fff; }
+
+        /* News */
         .news-item {
             display: grid;
-            grid-template-columns: 90px 1fr;
-            gap: 1.2em;
-            padding: 0.7em 1em;
-            margin: 0 -1em;
-            border-bottom: 1px dashed var(--rule);
-            border-radius: 4px;
-            transition: background-color 0.15s;
+            grid-template-columns: 70px 1fr;
+            gap: 1.5em;
+            padding: 0.9em 0;
+            border-bottom: 1px solid var(--rule);
         }
-        .news-item:hover { background-color: rgba(0, 0, 0, 0.025); }
         .news-item:last-child { border-bottom: none; }
         .news-date {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent);
-            font-size: 0.85em;
-            white-space: nowrap;
-            padding-top: 0.15em;
-        }
-        .news-title { color: var(--ink); margin-bottom: 0.1em; font-weight: 400; }
-        .news-description { color: var(--muted); font-size: 0.95em; }
-        .news-tag {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8em;
-            margin-right: 0.5em;
+            font-size: 0.82em;
             color: var(--muted);
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            vertical-align: 1px;
+            font-variant-numeric: tabular-nums;
+            padding-top: 0.1em;
         }
-        .news-tag::before { content: '['; color: var(--rule); }
-        .news-tag::after { content: ']'; color: var(--rule); }
-        .news-tag.paper { color: var(--accent); }
-        .news-tag.award { color: #b45309; }
-        .news-item.highlight {
-            background-color: rgba(180, 83, 9, 0.04);
-        }
-        .news-item.highlight:hover {
-            background-color: rgba(180, 83, 9, 0.08);
-        }
-        .news-item.highlight .news-title::before {
-            content: '★ ';
-            color: #b45309;
-        }
-
-        /* MISC */
-        .misc-list { line-height: 1.9; padding-left: 1em; }
-        .misc-list li { list-style: none; position: relative; }
-        .misc-list li::before {
-            content: '·';
-            position: absolute;
-            left: -1em;
-            color: var(--accent);
-        }
-
-        /* MENTORING */
-        .mentor-list {
-            display: flex;
-            flex-direction: column;
-            margin: 1.2em 0;
-        }
-        .mentor-row {
-            display: grid;
-            grid-template-columns: 36px 1fr;
-            gap: 0.8em;
-            padding: 0.8em 1em;
-            margin: 0 -1em;
-            border-radius: 4px;
-            text-decoration: none;
-            color: var(--ink);
-            border-bottom: 1px dashed var(--rule);
-            transition: background-color 0.15s, transform 0.2s;
-            align-items: baseline;
-        }
-        .mentor-row:last-child { border-bottom: none; }
-        .mentor-row:hover {
-            background-color: rgba(0, 0, 0, 0.025);
-            transform: translateX(4px);
-        }
-        .mentor-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8em;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        .mentor-title { color: var(--ink); }
-
-        /* SERVICE */
-        .service-list { display: flex; flex-direction: column; font-family: 'Lato', sans-serif; font-size: 0.95em; }
+        .news-title { font-size: 0.95em; font-weight: 500; color: var(--ink); margin-bottom: 0.2em; }
+        .news-description { font-size: 0.88em; color: var(--body); }
+        /* Service */
+        .service-list { display: flex; flex-direction: column; }
         .service-row {
             display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 1em;
-            align-items: baseline;
-            padding: 0.6em 0;
-            border-bottom: 1px dashed var(--rule);
+            grid-template-columns: 70px 1fr;
+            gap: 1.5em;
+            padding: 0.9em 0;
+            border-bottom: 1px solid var(--rule);
         }
         .service-row:last-child { border-bottom: none; }
-        .service-row.no-separator { border-bottom: none; padding-bottom: 0; }
         .service-role {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent);
-            font-weight: 700;
+            color: var(--muted);
+            font-size: 0.82em;
+            font-weight: 600;
         }
-        .service-detail { color: var(--ink); }
+        .service-detail { color: var(--ink); font-size: 0.95em; }
 
-        /* Footer meta — only visible on mobile */
-        .footer-meta { display: none; }
-
-        @media (max-width: 700px) {
-            body { font-size: 14px; }
-            .container { padding: 4.5em 1.2em 3em; }
-
-            /* Nav: hide name to fit links on narrow screens */
-            .nav-container { padding: 0 1em; gap: 1em; height: 44px; }
-            .nav-name { display: none; }
-            .nav-container { font-size: 0.78em; justify-content: center; }
-
-            /* Header: stack headshot inline (not absolute) */
-            .header {
-                min-height: auto;
-                padding-right: 0;
-                margin-bottom: 1.5em;
-            }
-            .header-text {
-                padding-right: 0;
-            }
-            .headshot {
+        @media (max-width: 900px) {
+            .layout { grid-template-columns: 1fr; }
+            .sidebar {
                 position: static;
-                width: 90px;
-                height: 90px;
-                margin-bottom: 0.6em;
-                top: auto;
-                right: auto;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--rule);
+                padding: 2.5em 1.5em 2em;
             }
-            h1 { font-size: 2em; }
-            .tagline { font-size: 1em; margin-bottom: 0.4em; }
-            .header-meta { display: none; }
-            .footer-meta {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.6em 1.2em;
-                margin-top: 3em;
-                padding: 1.5em 0;
-                border-top: 1px dashed var(--rule);
-                font-size: 0.9em;
-                color: var(--muted);
-            }
-            .footer-meta a {
-                color: var(--accent);
-                text-decoration: underline;
-                text-decoration-thickness: 1px;
-                text-underline-offset: 3px;
-            }
-            .footer-meta a:hover { color: var(--ink); }
-
-            /* Projects: stack thumbnail above content */
-            .project {
-                flex-direction: column;
-                gap: 0.8em;
-            }
-            .project-thumb {
-                width: 100%;
-                height: 160px;
-            }
-            .project.featured {
-                margin-left: 0;
-                margin-right: 0;
-                padding: 1em;
-            }
-            .project:hover { transform: none; }
-
-            /* News: stack date above title */
-            .news-item {
-                grid-template-columns: 1fr;
-                gap: 0.2em;
-                padding: 0.8em 0.7em;
-                margin: 0 -0.7em;
-            }
-            .news-date { font-size: 0.85em; }
-
-            /* Service: tighter columns */
-            .service-row { grid-template-columns: 80px 1fr; gap: 0.6em; }
-
-            /* Featured tag: smaller */
-            .project-tag { font-size: 0.65em; }
+            .sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: 1.4em; margin: 1.5em 0 0; }
+            .sidebar-nav a::before { display: none; }
+            .contact { margin-top: 1.5em; padding-top: 1.5em; }
+            .main { padding: 2.5em 1.5em 3em; }
+            .news-item { grid-template-columns: 1fr; gap: 0.2em; }
         }
     </style>
 </head>
 <body>
-    <nav class="nav">
-        <div class="nav-container">
-            <span class="nav-name">eyon jang</span>
-            <a href="#about" class="nav-link">about</a>
-            <a href="#research" class="nav-link">research</a>
-            <a href="#news" class="nav-link">news</a>
-            <a href="#service" class="nav-link">service</a>
-        </div>
-    </nav>
+    <div class="layout">
+        <aside class="sidebar">
+            <img src="assets/headshot.png" alt="Eyon Jang" class="profile-image">
+            <div class="name">Eyon Jang</div>
+            <div class="title-line">Alignment Researcher</div>
 
-    <div class="container">
-        <header class="header">
-            <img src="assets/headshot_purple.png" alt="Eyon Jang" class="headshot">
-            <div class="header-text">
-                <div class="header-line"><span class="prompt">$</span>whoami<span class="cursor">▋</span></div>
-                <h1>Eyon Jang</h1>
-                <div class="tagline">A(G)I safety researcher</div>
+            <nav class="sidebar-nav">
+                <a href="#intro" class="active">About</a>
+                <a href="#research">Research</a>
+                <a href="#news">News</a>
+                <a href="#service">Service</a>
+            </nav>
+
+            <div class="contact">
+                <a href="mailto:yjang385@gmail.com" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                <a href="https://github.com/yoenoo" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ" title="Google Scholar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg></a>
+                <a href="https://x.com/eyonjang" title="X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://linkedin.com/in/eyonjang" title="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
             </div>
-            <div class="header-meta">
-                <a href="mailto:eyon@eyonjang.me">email</a>
-                <a href="https://linkedin.com/in/yeonwoojang">linkedin</a>
-                <a href="https://x.com/eyonjang">x</a>
-                <a href="https://github.com/yoenoo">github</a>
-                <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ&sortby=pubdate">google scholar</a>
-                <a href="https://lesswrong.com/users/eyon-jang">lesswrong</a>
-            </div>
-        </header>
+        </aside>
 
-        <section class="section" id="about">
-            <h2 class="section-title">about</h2>
-            <div class="prose">
-                <p>I work on ensuring that AIs remain beneficial and aligned with human values as they become more capable. My research focuses on developing methods for understanding, evaluating, and controlling advanced AI systems. I'm particularly interested in <a href="https://www.lesswrong.com/posts/FqpAPC48CzAtvfx5C/automating-ai-safety-what-we-can-do-today">AI R&D automation</a> and threat models posed by it, as well as alignment techniques leveraging high-compute RL to develop mitigations that scale to superintelligence.</p>
-                <p>I am currently a <a href="https://www.matsprogram.org/">MATS</a> scholar researching <a href="https://www.lesswrong.com/posts/eeFFpKCDWE9gjfzsk/exploration-hacking-can-llms-learn-to-resist-rl-training-2">exploration hacking</a> and <a href="https://github.com/yoenoo/aaa/tree/main">automated alignment auditing</a>, mentored by <a href="https://www.davidlindner.me/">David Lindner</a>, <a href="https://rzimmermann.com/">Roland Zimmermann</a> (Google DeepMind AGI Safety and Alignment), and <a href="https://www.scottemmons.com/">Scott Emmons</a> (Anthropic Alignment Science).</p>
-                <p>Previously, I spent 6 years as a quantitative researcher on Wall Street. I received my MSc in Statistics and Machine Learning (with Distinction) from the University of Oxford, where I was supervised by <a href="https://www.stats.ox.ac.uk/~teh/">Prof. Yee Whye Teh</a> and <a href="https://www.stat.ubc.ca/~benbr/">Prof. Benjamin Bloem-Reddy</a>.</p>
-                <div class="interests">research interests: alignment, ai control, scalable oversight, reinforcement learning</div>
-            </div>
-        </section>
+        <main class="main">
+            <section id="intro" class="section">
+                <h2 class="section-title">About</h2>
+                <div class="intro-text">
+                    <p>I'm a Research Scientist on the Preparedness &amp; Policy team at <a href="https://labs.scale.com/">Scale AI</a>, where I work on AI safety and alignment research.</p>
+                    <p>My research focuses on building a rigorous science of model behavior, developing reliable evaluations of frontier risk, and studying safety post-training and alignment techniques that remain effective as AI systems become more capable.</p>
+                    <p>Previously, I was a <a href="https://www.matsprogram.org/">MATS</a> scholar researching <a href="https://www.lesswrong.com/posts/eeFFpKCDWE9gjfzsk/exploration-hacking-can-llms-learn-to-resist-rl-training-2">exploration hacking</a> and <a href="https://github.com/yoenoo/aaa/tree/main">automated alignment auditing</a>, mentored by <a href="https://www.davidlindner.me/">David Lindner</a>, <a href="https://rzimmermann.com/">Roland Zimmermann</a> (Google DeepMind AGI Safety and Alignment), and <a href="https://www.scottemmons.com/">Scott Emmons</a> (Anthropic Alignment Science).</p>
+                    <p>Before moving into technical AI safety, I spent 6 years as a quantitative researcher on Wall Street. I received my MSc in Statistics and Machine Learning (with Distinction) from the University of Oxford, where I was supervised by <a href="https://www.stats.ox.ac.uk/~teh/">Prof. Yee Whye Teh</a> and <a href="https://www.stat.ubc.ca/~benbr/">Prof. Benjamin Bloem-Reddy</a>.</p>
+                </div>
+                <div class="interests">Research interests: Science of Model Behavior, Alignment Auditing, Scalable Oversight, RSI Safety, Multi-agent Safety, Misalignment generalization</div>
+            </section>
 
-        <section class="section" id="research">
-            <h2 class="section-title">research</h2>
+            <section id="research" class="section">
+                <h2 class="section-title">Research</h2>
+                <p class="section-note">For a full list of publications, see my <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ&amp;sortby=pubdate">Google Scholar</a>.</p>
 
-            <p style="margin-bottom: 2em; font-size: 0.92em; color: var(--muted);">For a full list of publications, see my <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ&sortby=pubdate">Google Scholar</a>.</p>
+                <div class="project">
+                    <h3 class="project-title">Automated Alignment Auditing</h3>
+                    <div class="project-meta"><span class="status ongoing">ongoing</span> MATS 8.2 · <b>Eyon Jang</b>, Alex Serrano</div>
+                    <div class="project-description">An automated alignment-auditing framework for production coding agents (Claude Code, Codex CLI, Gemini CLI), built on top of <a href="https://github.com/meridianlabs-ai/inspect_petri">Petri</a>. An auditor model probes a target agent across scripted scenarios, and independent judges score the resulting transcripts for scheming behaviors.</div>
+                    <div class="project-links"><a href="https://github.com/yoenoo/aaa/tree/main">Code</a></div>
+                </div>
 
-            <div class="project featured">
-                <img src="assets/research/eh.png" alt="" class="project-thumb">
-                <div class="project-content">
-                    <span class="project-tag">★ Featured</span>
-                    <h3 class="project-title">Exploration Hacking: Can LLMs Learn to Resist RL Training?</h3>
-                    <div class="project-meta"><span class="project-status">published</span> · ICML 2026 · MATS 8.1 · <b>Eyon Jang</b>, Damon Falck, Joschka Braun</div>
-                    <div class="project-description">Can reasoning models undermine RL training by manipulating their exploration? Through model organisms experiments in realistic settings, we are developing a science of when and how models can influence their own RL training ("exploration hacking"), build an understanding of what causes current frontier models to do so in the wild, and stress-test CoT monitorability against exploration hackers.</div>
+                <div class="project">
+                    <h3 class="project-title">Model Organisms of Exploration Hacking</h3>
+                    <div class="project-meta"><span class="status published">published</span> ICML 2026 · <b>Eyon Jang</b>, Damon Falck, Joschka Braun</div>
+                    <div class="project-description"><i>Can reasoning models undermine RL training by manipulating their exploration?</i> Through model organisms experiments in realistic settings, we develop a science of when and how models can influence their own RL training ("exploration hacking"), build an understanding of what causes current frontier models to do so in the wild, and stress-test CoT monitorability against exploration hackers.</div>
                     <div class="project-links">
-                        <a href="https://arxiv.org/abs/2604.28182">paper</a>
-                        <a href="https://openreview.net/forum?id=L0EGKqOBpz&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICML.cc%2F2026%2FConference%2FAuthors%23your-submissions)">openreview</a>
-                        <a href="https://drive.google.com/file/d/12P83kSQ-tXHFwJV8HOhkElQOERnkeNbR/view?usp=sharing">research proposal</a>
-                        <a href="https://www.lesswrong.com/posts/eeFFpKCDWE9gjfzsk/exploration-hacking-can-llms-learn-to-resist-rl-training-2">blog</a>
-                        <a href="https://github.com/yoenoo/exploration_hacking">github</a>
+                        <a href="https://arxiv.org/abs/2604.28182">Paper</a>
+                        <a href="https://openreview.net/forum?id=L0EGKqOBpz">OpenReview</a>
+                        <a href="https://www.lesswrong.com/posts/Dft9vpMnEeWFE3Gc6/exploration-hacking-can-reasoning-models-subvert-rl-1">Blog</a>
+                        <a href="https://github.com/yoenoo/exploration_hacking">Code</a>
                     </div>
                 </div>
-            </div>
 
-            <div class="project">
-                <img src="assets/research/audits.png" alt="" class="project-thumb">
-                <div class="project-content">
-                    <h3 class="project-title">Automated Alignment Auditing</h3>
-                    <div class="project-meta"><span class="project-status ongoing">ongoing</span> · MATS 8.2 · <b>Eyon Jang</b>, Alex Serrano</div>
-                    <div class="project-description">An automated alignment-auditing framework for production coding agents (Claude Code, Codex CLI, Gemini CLI), built on top of <a href="https://github.com/meridianlabs-ai/inspect_petri">Petri</a>. An auditor model probes a target agent across scripted scenarios, and independent judges score the resulting transcripts for scheming behaviors.</div>
-                    <div class="project-links"><a href="https://github.com/yoenoo/aaa/tree/main">github</a></div>
-                </div>
-            </div>
-
-            <div class="project">
-                <img src="assets/research/unlearning.png" alt="" class="project-thumb">
-                <div class="project-content">
+                <div class="project">
                     <h3 class="project-title">Prompt Attacks Reveal Superficial Knowledge Removal in Unlearning Methods</h3>
-                    <div class="project-meta"><span class="project-status">published</span> · SPAR · <b>Eyon Jang</b>, Shariqah Hossain, Ashwin Sreevatsa, Diogo Cruz</div>
+                    <div class="project-meta"><span class="status published">published</span> COLM 2025 SoLaR workshop · <b>Eyon Jang</b>, Shariqah Hossain, Ashwin Sreevatsa, Diogo Cruz</div>
                     <div class="project-description">We investigate whether machine unlearning methods genuinely remove knowledge or merely suppress it. Our work suggests that some approaches remain vulnerable to simple prompt attacks, which highlights the need for more reliable unlearning evaluations and provides an open framework for systematic evaluation of unlearning methods.</div>
                     <div class="project-links">
-                        <a href="https://arxiv.org/abs/2506.10236">paper</a>
-                        <a href="https://github.com/diogo-cruz/prompt_attacks_paper">github</a>
+                        <a href="https://arxiv.org/abs/2506.10236">Paper</a>
+                        <a href="https://github.com/diogo-cruz/prompt_attacks_paper">Code</a>
                     </div>
                 </div>
-            </div>
 
-            <div class="project">
-                <img src="assets/research/automating_ai.png" alt="" class="project-thumb">
-                <div class="project-content">
+                <div class="project">
                     <h3 class="project-title">Automating AI Safety Research using AIs</h3>
-                    <div class="project-meta"><span class="project-status">published</span> · SPAR · Matthew Shinkle*, <b>Eyon Jang</b>*, Jacques Thibodeau</div>
-                    <div class="project-description">A unified pipeline of AI agent tools for automating interpretability research — spanning literature search, codebase discovery, and experiment design/execution. We demonstrate the system on <a href="https://arxiv.org/abs/2503.09532">SAEBench</a>, where it autonomously implements and evaluates sparse autoencoder experiments.</div>
+                    <div class="project-meta"><span class="status published">published</span> LessWrong · Matthew Shinkle*, <b>Eyon Jang</b>*, Jacques Thibodeau</div>
+                    <div class="project-description">A unified pipeline of AI agent tools for automating interpretability research, spanning literature search, codebase discovery, and experiment design/execution. We demonstrate the system on SAEBench, where it autonomously implements and evaluates sparse autoencoder experiments.</div>
                     <div class="project-links">
-                        <a href="https://www.lesswrong.com/posts/FqpAPC48CzAtvfx5C/automating-ai-safety-what-we-can-do-today">lesswrong</a>
-                        <a href="https://github.com/MShinkle/automation_projects_pilots/tree/main">github</a>
+                        <a href="https://www.lesswrong.com/posts/FqpAPC48CzAtvfx5C/automating-ai-safety-what-we-can-do-today">LessWrong</a>
+                        <a href="https://github.com/MShinkle/automation_projects_pilots/tree/main">Code</a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section" id="news">
-            <h2 class="section-title">news</h2>
-            <div class="news-list">
-                <div class="news-item highlight"><div class="news-date">Apr 2026</div><div><div class="news-title"><span class="news-tag paper">paper</span>Paper accepted to ICML 2026</div><div class="news-description">"Exploration Hacking: Can LLMs Learn to Resist RL Training?" accepted to <b>ICML 2026 Main Conference</b>.</div></div></div>
-                <div class="news-item"><div class="news-date">Feb 2026</div><div><div class="news-title"><span class="news-tag">post</span>New blog post on <a href="https://www.lesswrong.com/posts/suRWiTNnazrRsoBKR/a-conceptual-framework-for-exploration-hacking">A Conceptual Framework for Exploration Hacking</a></div></div></div>
-                <div class="news-item"><div class="news-date">Feb 2026</div><div><div class="news-title"><span class="news-tag">program</span>Accepted to MATS 8.2 (Extension+)</div><div class="news-description">+6 months funding for exploration hacking & automated alignment auditing.</div></div></div>
-                <div class="news-item highlight"><div class="news-date">Dec 2025</div><div><div class="news-title"><span class="news-tag award">award</span>Best Paper Runner-Up at NeurIPS 2025</div><div class="news-description">"Resisting RL Elicitation of Biosecurity Capabilities: Reasoning Models Exploration Hacking on WMDP" accepted to NeurIPS 2025 <a href="https://biosafe-gen-ai.github.io/">Biosecurity Safeguards for Generative AI</a> workshop <b>(Oral)</b>.<br>Awarded <b>Best Paper Runner-Up</b> (with $1,000 prize).</div></div></div>
-                <div class="news-item"><div class="news-date">Oct 2025</div><div><div class="news-title"><span class="news-tag">field_building</span>Algoverse Fall 2025 Mentor</div><div class="news-description">I'll be mentoring 2 Algoverse projects on AI control.</div></div></div>
-                <div class="news-item"><div class="news-date">Aug 2025</div><div><div class="news-title"><span class="news-tag">program</span>Accepted to MATS 8.1 (Extension)</div><div class="news-description">+6 months funding for exploration hacking. Project selected as a <b>spotlight</b> talk at the MATS Symposium.</div></div></div>
-                <div class="news-item"><div class="news-date">Aug 2025</div><div><div class="news-title"><span class="news-tag">field_building</span>SPAR Fall 2025 Mentor</div><div class="news-description">I'll be co-mentoring 3 SPAR projects with Diogo Cruz.</div></div></div>
-                <div class="news-item"><div class="news-date">Jul 2025</div><div><div class="news-title"><span class="news-tag paper">paper</span>Paper accepted to COLM 2025</div><div class="news-description">"Prompt Attacks Reveal Superficial Knowledge Removal in Unlearning Methods" accepted to COLM 2025 SoLaR workshop.</div></div></div>
-                <div class="news-item"><div class="news-date">Jun 2025</div><div><div class="news-title"><span class="news-tag">program</span>Accepted to MATS 8.0</div><div class="news-description">I'll be joining MATS 8.0 as a research scholar to study AI safety! (Google DeepMind stream: Scott Emmons/David Lindner/Erik Jenner)</div></div></div>
-            </div>
-        </section>
+            <section id="news" class="section">
+                <h2 class="section-title">News</h2>
+                <div class="news-item"><div class="news-date">Jul 2026</div><div><div class="news-title">Joined Scale AI!</div><div class="news-description">Building better ways to understand, evaluate, and align frontier AI systems.</div></div></div>
+                <div class="news-item"><div class="news-date">Apr 2026</div><div><div class="news-title">Paper accepted to ICML 2026</div><div class="news-description">"Exploration Hacking: Can LLMs Learn to Resist RL Training?" accepted to <b>ICML 2026 Main Conference</b>.</div></div></div>
+                <div class="news-item"><div class="news-date">Mar 2026</div><div><div class="news-title">Received a $250,000 research grant from Coefficient Giving</div><div class="news-description">Awarded to support research on the science of exploration hacking.</div></div></div>
+                <div class="news-item"><div class="news-date">Feb 2026</div><div><div class="news-title">New blog post on <a href="https://www.lesswrong.com/posts/suRWiTNnazrRsoBKR/a-conceptual-framework-for-exploration-hacking">A Conceptual Framework for Exploration Hacking</a></div><div class="news-description">In this post, we formalize exploration hacking and outline its risks, potential mitigations, and key open research questions.</div></div></div>
+                <div class="news-item"><div class="news-date">Dec 2025</div><div><div class="news-title">Paper accepted to NeurIPS 2025</div><div class="news-description">"Resisting RL Elicitation of Biosecurity Capabilities: Reasoning Models Exploration Hacking on WMDP" accepted to NeurIPS 2025 <a href="https://biosafe-gen-ai.github.io/">Biosecurity Safeguards for Generative AI</a> workshop <b>(Oral; Best Paper Runner-Up)</b>.</div></div></div>
+                <div class="news-item"><div class="news-date">Oct 2025</div><div><div class="news-title">Algoverse Fall 2025 Mentor</div><div class="news-description">I'll be mentoring 2 Algoverse projects on AI control.</div></div></div>
+                <div class="news-item"><div class="news-date">Aug 2025</div><div><div class="news-title">SPAR Fall 2025 Mentor</div><div class="news-description">I'll be co-mentoring 3 SPAR projects with Diogo Cruz.</div></div></div>
+                <div class="news-item"><div class="news-date">Jul 2025</div><div><div class="news-title">Paper accepted to COLM 2025</div><div class="news-description">"Prompt Attacks Reveal Superficial Knowledge Removal in Unlearning Methods" accepted to COLM 2025 SoLaR workshop.</div></div></div>
+                <div class="news-item"><div class="news-date">Jun 2025</div><div><div class="news-title">Accepted to MATS 8.0</div><div class="news-description">I'll be joining MATS 8.0 as a research scholar to study AI safety! (Google DeepMind stream: Scott Emmons/David Lindner/Erik Jenner)</div></div></div>
+            </section>
 
-        <section class="section" id="service">
-            <h2 class="section-title">service</h2>
-            <div class="service-list">
-                <div class="service-row no-separator">
-                    <span class="service-role">reviewer</span>
-                    <span class="service-detail">ICML 2026 Mechanistic Interpretability workshop</span>
+            <section id="service" class="section">
+                <h2 class="section-title">Service</h2>
+                <div class="service-list">
+                    <div class="service-row">
+                        <span class="service-role">reviewer</span>
+                        <span class="service-detail">ICML 2026 Mechanistic Interpretability workshop</span>
+                    </div>
+                    <div class="service-row">
+                        <span class="service-role"></span>
+                        <span class="service-detail">NeurIPS 2025 Mechanistic Interpretability workshop</span>
+                    </div>
                 </div>
-                <div class="service-row">
-                    <span class="service-role"></span>
-                    <span class="service-detail">NeurIPS 2025 Mechanistic Interpretability workshop</span>
-                </div>
-            </div>
-        </section>
-
-        <div class="footer-meta">
-            <a href="mailto:eyon@eyonjang.me">email</a>
-            <a href="https://linkedin.com/in/yeonwoojang">linkedin</a>
-            <a href="https://x.com/eyonjang">x</a>
-            <a href="https://github.com/yoenoo">github</a>
-            <a href="https://scholar.google.com/citations?user=jXfklAEAAAAJ&sortby=pubdate">google scholar</a>
-            <a href="https://lesswrong.com/users/eyon-jang">lesswrong</a>
-        </div>
+            </section>
+        </main>
     </div>
 
     <script>
         // Active section tracking
         const sections = document.querySelectorAll('.section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(s => {
-                if (window.scrollY >= s.offsetTop - 100) current = s.id;
-            });
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+        const setActiveSection = id => {
             navLinks.forEach(l => {
-                l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+                l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+            });
+        };
+
+        const updateActiveSection = () => {
+            let current = sections[0]?.id || '';
+            let greatestVisibleArea = 0;
+
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const visibleTop = Math.max(rect.top, 0);
+                const visibleBottom = Math.min(rect.bottom, window.innerHeight);
+                const visibleArea = Math.max(0, visibleBottom - visibleTop);
+
+                if (visibleArea > greatestVisibleArea) {
+                    greatestVisibleArea = visibleArea;
+                    current = section.id;
+                }
+            });
+
+            if (window.scrollY <= 2) {
+                current = sections[0]?.id || current;
+            }
+
+            // The last section may be too short to become the most visible one.
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+                current = sections[sections.length - 1]?.id || current;
+            }
+
+            setActiveSection(current);
+        };
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                setActiveSection(link.getAttribute('href').slice(1));
             });
         });
 
-        // Smooth scroll on anchor click
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                const target = document.querySelector(a.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+        window.addEventListener('scroll', updateActiveSection, { passive: true });
+        window.addEventListener('resize', updateActiveSection);
+        updateActiveSection();
     </script>
 </body>
 </html>
